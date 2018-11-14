@@ -1,0 +1,142 @@
+
+body{
+	background-color:light-gray;
+	
+}
+
+.navbar.bg-dark{
+	transition: background 1500ms;
+}
+
+
+.top-header{
+	background-image:url("../resources/images/header_background.jpg");
+	background-repeat:no-repeat;
+	background-size:cover;
+	color:#FFFF;
+/* 	margin-top:200px;
+ */	
+}
+
+.footer{
+	background:#5e8598;
+	color:black;
+	height:auto;
+	}
+
+
+.home-footer{
+	background:white;
+	color:#5e8598;;
+	height:auto;
+	}
+	
+/* to be combined into one selector */
+ .comment-input{
+	border: none;
+	border-bottom:0.09rem solid LightGray;	
+	padding:0;
+}
+
+
+.post-title-input{
+	border: none;
+	border-bottom:0.09rem solid LightGray;	
+	padding:0;
+}
+
+
+ .post-text-input{
+	border: none;
+	border-bottom:0.09rem solid LightGray;	
+	padding:0;
+}
+
+ .reply-text-input{
+	border: none;
+	border-bottom:0.09rem solid LightGray;	
+	padding:0;
+}
+
+.comment-input:focus{
+	border-bottom:0.1rem solid black;
+    box-shadow: none;
+}
+
+
+.post-title-input:focus{
+	border-bottom:0.1rem solid black;
+    box-shadow: none;
+}
+
+.post-text-input:focus{
+	border-bottom:0.1rem solid black;
+    box-shadow: none;
+}
+
+.reply-text-input:focus{
+	border-bottom:0.1rem solid black;
+    box-shadow: none;
+}
+
+.search-input, .search-submit{
+	width: 100%;
+}
+
+.navbar-brand{
+	font-size: 3rem;
+}
+
+.cancel-button{
+    border:none;
+	background:white;
+	margin-right:1rem;
+	color:black;
+	/* visibility:hidden;  */
+}
+
+.comment-input:focus~.cancel-button{
+    visibility:visible;
+}
+
+.comment-input:focus~.cancel-button{
+    visibility:visible;
+}
+
+.display-4 {
+    font-size: 3.8rem;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing:2;
+}
+
+.submit-button{
+	background-color:#5e8598;
+	border-color:#5e8598;
+	color:white;
+}
+
+label{
+	font-weight:bold;
+}
+
+.post-list-content.media{
+	background-color:#f1f6f7;
+}
+
+textarea{
+	height:2rem;
+}
+
+.thumbnail-box{
+	width:5rem;
+}
+/* 
+.reply-form{
+	visibility:hidden;
+}
+
+.reply-link:hover .reply-form{
+	visibility:visible;
+} */
+ */
