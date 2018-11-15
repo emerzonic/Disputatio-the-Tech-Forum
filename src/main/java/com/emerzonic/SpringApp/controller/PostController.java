@@ -4,22 +4,31 @@ package com.emerzonic.SpringApp.controller;
 import com.emerzonic.SpringApp.entity.Post;
 import com.emerzonic.SpringApp.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
+@RequestMapping("post")
 public class PostController {
+    private PostService postService;
+
     //inject PostService
     @Autowired
-    private PostService postService;
+    public PostController(PostService postService) {
+        this.postService = postService;
+    }
 
 
     //get all posts
-    @GetMapping("/postlist")
-    public List<Post> getAllPosts() {
-       return postService.getAllPosts();
+    @GetMapping("/list")
+    public String getAllPosts(Model model) {
+       List<Post> posts = postService.getAllPosts();
+        System.out.println(posts);
+       model.addAttribute("posts", posts);
+       return "post/show-posts";
     }
 
 ////    //search posts

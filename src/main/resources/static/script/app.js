@@ -34,13 +34,13 @@
 // 	$("#replyForm").removeClass("d-none");
 // });
 //
-// $(function() {
-// 	$(document).scroll(function() {
-// 		var $nav = $("#mainNav");
-// 		if ($(window).scrollTop() > $nav.height()) {
-// 			$nav.addClass("bg-dark");
-// 		} else {
-// 			$nav.removeClass("bg-dark");
-// 		}
-// 	})
-// })
+$(function() {
+	$(document).scroll(function() {
+		var $nav = $("#mainNav");
+		if ($(window).scrollTop() > $nav.height()) {
+			$nav.addClass("bg-dark");
+		} else {
+			$nav.removeClass("bg-dark");
+		}
+	})
+})
