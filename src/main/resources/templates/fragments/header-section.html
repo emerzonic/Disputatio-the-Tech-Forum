@@ -9,23 +9,23 @@
             <h1 class="display-4 pt-5">Join The Discussion</h1>
         </div>
         <div>
-            <a href="/post/new"><button
-                    class="btn btn-success newpost-button
-					my-4" type="button">Start
-                a Conversation</button></a>
+            <a href="/post/new">
+                <button class="btn btn-success newpost-button my-4" type="button">Start a Conversation</button>
+            </a>
         </div>
 
         <div>
-            <form action="${search}"  method="POST">
+            <form action="/post/search"  method="POST">
                 <div class="input-group mb-3 px-lg-5 px-xl-5">
                     <input type="text" name="searchTerm" class="form-control"
                            placeholder="Search topics"
                            aria-label="search_terms" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button type="submit" class="input-group-text" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        <button type="submit" class="input-group-text" id="basic-addon2">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>

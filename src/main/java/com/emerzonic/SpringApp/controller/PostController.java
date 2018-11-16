@@ -26,9 +26,8 @@ public class PostController {
     @GetMapping("/list")
     public String getAllPosts(Model model) {
        List<Post> posts = postService.getAllPosts();
-        System.out.println(posts);
        model.addAttribute("posts", posts);
-       return "post/show-posts";
+       return "post/posts";
     }
 
 ////    //search posts
@@ -41,37 +40,40 @@ public class PostController {
 //
 //
 //    //get new post form
-    @GetMapping("/post/new")
+    @GetMapping("/new")
     public String newPost(Model model) {
         Post post = new Post();
         model.addAttribute("post", post);
-        return "home";
+        return "post/new";
     }
 //
 //
     //add new post
-    @PostMapping("/post")
+    @PostMapping("/add")
     public String addPost(@RequestBody Post post) {
-        postService.addPost(post);
-        return "done";
+        System.out.println(post.toString());
+//        postService.addPost(post);
+        return "redirect:/post/list";
     }
 //
 //
 //
     //get post details
-    @GetMapping("/post/{postId}")
-    public Post getPost(@PathVariable Integer postId) {
-        return postService.getPost(postId);
+    @GetMapping("/details/{postId}")
+    public String getPost(@PathVariable Integer postId, Model model) {
+        Post post = postService.getPost(postId);
+        model.addAttribute("post", post);
+        return "post/detail";
     }
 //
 //
 //
     //get post to be edited
-    @GetMapping("/post/edit/{postId}")
+    @GetMapping("/edit/{postId}")
     public String edit(@PathVariable Integer postId, Model model) {
         Post showPost = postService.getPost(postId);
         model.addAttribute("post", showPost);
-        return "edit-form";
+        return "post/edit";
     }
 //
 //
@@ -79,12 +81,12 @@ public class PostController {
     @PostMapping("/post/{postId}")
     public String updatePost(@RequestBody Post post, @PathVariable Integer postId) {
         postService.updatePost(post, postId);
-        return "post-detail";
+        return "detail";
     }
 //
 
-    @GetMapping("/delete")
-    public String deletePost(@RequestParam("postId") int postId) {
+    @GetMapping("/delete/{postId}")
+    public String deletePost(@PathVariable Integer postId) {
         postService.deletePost(postId);
         return "redirect:/post/list";
     }

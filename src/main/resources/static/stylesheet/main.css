@@ -10,7 +10,7 @@ body{
 
 
 .top-header{
-	background-image:url("../resources/images/header_background.jpg");
+	background-image:url("./static/images/header_background.jpg");
 	background-repeat:no-repeat;
 	background-size:cover;
 	color:#FFFF;
