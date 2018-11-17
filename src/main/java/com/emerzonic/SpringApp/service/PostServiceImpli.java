@@ -1,12 +1,15 @@
 package com.emerzonic.SpringApp.service;
 
-import com.emerzonic.SpringApp.repository.PostRepository;
+import com.emerzonic.SpringApp.DAO.CommentRepository;
+import com.emerzonic.SpringApp.DAO.PostRepository;
+import com.emerzonic.SpringApp.DAO.UserRepository;
 import com.emerzonic.SpringApp.entity.Post;
+import com.emerzonic.SpringApp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,22 +17,36 @@ import java.util.List;
 
 @Service
 public class PostServiceImpli implements PostService {
-
-	@Autowired
 	private PostRepository postRepository;
-	
+    private UserRepository userRepository;
+    private CommentRepository commentRepository;
+
+    @Autowired
+    public PostServiceImpli(PostRepository postRepository, UserRepository userRepository, CommentRepository commentRepository) {
+        this.postRepository = postRepository;
+        this.userRepository = userRepository;
+        this.commentRepository = commentRepository;
+
+    }
+
+    @Autowired
+
+
 	@Override
 	@Transactional
 	public List<Post> getAllPosts() {
-		List<Post> posts = new ArrayList<>();
-		postRepository.findAll().forEach(posts::add);
-		return posts;
+        Sort sort = new Sort(new Sort.Order(Sort.Direction.DESC, "id"));
+		return postRepository.findAll(sort);
 	}
 	
 	
 	@Override
 	@Transactional
 	public void addPost(Post post) {
+        //hardcoding current user
+	    User user = userRepository.findById(1).orElse(null);
+	    post.setAuthor(user.getUsername());
+        post.setCreatedOn();
 	    postRepository.save(post);
 
 	}
@@ -39,14 +56,18 @@ public class PostServiceImpli implements PostService {
 	@Override
 	@Transactional
 	public Post getPost(Integer postId) {
-	    return postRepository.findById(postId).orElse(null);
+	    Post post = postRepository.findById(postId).orElse(null);
+	    post.setComments(post.getComments());
+	    return post;
 	}
 //
 
 	@Override
 	@Transactional
 	public void updatePost(Post post, Integer postId) {
-	    postRepository.save(post);
+        Post updatedPost = postRepository.findById(postId).orElse(null);
+        updatedPost.setText(post.getText());
+        updatedPost.setTitle(post.getTitle());
 	}
 //
 //

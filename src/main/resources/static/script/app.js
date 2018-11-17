@@ -1,3 +1,4 @@
+console.log("connected");
 autosize(document.getElementById("commentInput"));
 autosize(document.getElementById("postTitleInput"));
 autosize(document.getElementById("postTextInput"));
@@ -5,26 +6,51 @@ autosize(document.getElementById("replyInput"));
 autosize(document.getElementById("editPostTitleInput"));
 autosize(document.getElementById("editPostTextInput"));
 
-// $("#commentForm").submit(function(event) {
-	// event.preventDefault();
-	//
-	// // create new friend to be submitted
-	// var comment = {
-	// text : $("#commentInput").val(),
-	// postId : $("#postId").val()
-	//
-	// };
-	//
-	// // AJAX post the data to the friends API.
-	// $.post("/post/addComment", comment, function(post) {
-	// // Grab the best matched from the AJAX response.
-	// $("#matchedName").text(match.name);
-	// $("#score").text(match.score);
-	// $("#matchedImage").attr("src", match.image);
-	// });
-	// $("#largeModal").modal("toggle");
-	//
-// });
+
+//submitting new comment
+$("#commentForm").submit(function(event) {
+    event.preventDefault();
+    // create new comment object to be submitted
+
+      var text = $("#commentInput").val();
+      var  postId = $("#postId").val();
+
+    // AJAX post the data to the comment controller.
+    var url = "/comment/add";
+    var data = {text:text, postId:postId};
+
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        'type': 'POST',
+        'url': url,
+        'data': JSON.stringify(data),
+        'dataType': 'json',
+        'success': function (data) {
+            console.log(data)
+            setTimeout(function(){
+                location.reload();
+            }, 2000);
+        }
+    });
+});
+
+
+//submitting new comment
+$(document).on("click", "#commentDetele", function(event) {
+    console.log("clicked");
+
+    event.preventDefault();
+
+    var id = event.target.getAttribute("data-th-commentId");
+    console.log(id);
+    // setTimeout(function(){
+    //     location.reload();
+    // }, 2000);
+});
+
 
 // $("#cancelButton").click(function() {
 // 	$("#commentInput").val("");
@@ -33,7 +59,9 @@ autosize(document.getElementById("editPostTextInput"));
 // $("#reply-link").click(function() {
 // 	$("#replyForm").removeClass("d-none");
 // });
-//
+
+
+
 $(function() {
 	$(document).scroll(function() {
 		var $nav = $("#mainNav");
@@ -43,4 +71,4 @@ $(function() {
 			$nav.removeClass("bg-dark");
 		}
 	})
-})
+});

@@ -32,7 +32,7 @@ public class Post {
 	@Transient
 	private String dateString;
 
-	@Column(name = "author")
+	@Column(name = "author",nullable = false)
 	private String author;
 
 	@OneToMany(cascade = CascadeType.ALL)

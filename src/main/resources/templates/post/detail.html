@@ -4,7 +4,7 @@
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
 <div th:replace="fragments/header-section :: header-section"></div>
-<div class="container px-lg-5 px-sm-0">
+<div class="container px-lg-5 px-sm-0 mb-4">
     <div class="row">
         <div class="col-lg-10 justify-content-center mx-auto">
             <div><h6 class="display-4">Post Detail</h6></div>
@@ -36,12 +36,15 @@
                         <span class="ml-3 mr-1">
                                 <i class="fa fa-comments" aria-hidden="true" th:text="${post.comments.size()}"> </i>
                                 comments
-                            </span>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div th:replace="fragments/comment :: new-comment-form"></div>
+
+    <div th:replace="fragments/comment :: comments"></div>
 </div>
 
 <div th:replace="fragments/footer :: footer-home"></div>

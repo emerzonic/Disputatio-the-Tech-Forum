@@ -10,10 +10,10 @@
             <div class="post-list-content">
                 <!--POST DETAIL DISPLAYS BELOW-->
                 <div class="pb-0 border-bottom">
-                    <h6 class="display-4">New Post</h6>
+                    <h6 class="display-4" th:text="${pageTitle}"></h6>
                 </div>
                 <div class="new-post-content mt-2">
-                    <form th:action="@{/post/add}" th:object="${post}" method="post">
+                    <form action="#" th:action="@{/post/add}" th:object="${post}" method="post">
                         <div class="form-group">
                             <label for="postTitleInput">Post Title</label>
                             <input  th:field="*{title}"

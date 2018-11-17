@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="row" th:fragment="new-comment-form">
+    <div class="col-lg-10 justify-content-center mx-auto">
+        <div class="mb-3" >
+            <!--NEW COMMENT FORM BELOW-->
+            <form id="commentForm" class="comment-form">
+                <input id="postId" type="hidden" name="postId" th:value="${post.id}"/>
+                <div class="form-group">
+                    <textarea id="commentInput" name="text" class="form-control comment-input rounded-0 pb-0"
+                              placeholder="Add comment to this post..."></textarea>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="button" id="cancelButton" class="btn btn-sm cancel-button">CANCEL</button>
+                    <button type="submit" class="btn btn-primary btn-sm submit-button">COMMENT</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row" th:fragment="comments"  th:if="${post.comments != null}">
+    <div class="col-xl-10 col-lg-10 col-md-10 justify-content-center mx-auto" th:each="comment : ${ post.comments }">
+        <div class="my-2 border p-2">
+            <div class="d-flex">
+                <div class="col-lg-2 bg-info">
+                    <h3>E</h3>
+                </div>
+                <div class="col-lg-8 d-flex flex-column">
+                    <div class="col-lg-12 bg-danger">
+                        <span th:text="${comment.author}"></span> <span th:text="${comment.dateString}"></span>
+                    </div>
+                    <div class="col-lg-12 bg-warning">
+                        <p th:text="${comment.text}"></p>
+                    </div>
+                    <div class="col-lg-12 bg-info">
+                        <span th:text="${comment.likes.size()}"></span>
+                        <span th:text="${comment.replies.size()}"></span>
+                    </div>
+                </div>
+                <div class="col-lg-2 bg-secondary">
+                    <div>
+                        <i class="fa fa-ellipsis-v pl-4" data-toggle="dropdown"
+                           aria-hidden="true"></i>
+                        <div class="dropdown-menu">
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-action" id="commentEdit" data-th-commentId="${comment.id}" >Edit</li>
+                                <li class="list-group-item list-group-item-action" id="commentDelete" data-th-commentId="${comment.id}" >Delete</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

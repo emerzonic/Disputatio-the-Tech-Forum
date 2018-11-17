@@ -44,15 +44,15 @@ public class PostController {
     public String newPost(Model model) {
         Post post = new Post();
         model.addAttribute("post", post);
-        return "post/new";
+        model.addAttribute("page-title", "New Post");
+        return "post/form";
     }
 //
 //
     //add new post
     @PostMapping("/add")
-    public String addPost(@RequestBody Post post) {
-        System.out.println(post.toString());
-//        postService.addPost(post);
+    public String addPost(@ModelAttribute(value="post") Post post) {
+        postService.addPost(post);
         return "redirect:/post/list";
     }
 //
@@ -65,26 +65,27 @@ public class PostController {
         model.addAttribute("post", post);
         return "post/detail";
     }
-//
-//
-//
+
+
     //get post to be edited
     @GetMapping("/edit/{postId}")
     public String edit(@PathVariable Integer postId, Model model) {
-        Post showPost = postService.getPost(postId);
-        model.addAttribute("post", showPost);
+        Post post = postService.getPost(postId);
+        model.addAttribute("post", post);
+        model.addAttribute("page-title", "Edit Post");
         return "post/edit";
     }
-//
-//
-//    //update post
-    @PostMapping("/post/{postId}")
-    public String updatePost(@RequestBody Post post, @PathVariable Integer postId) {
-        postService.updatePost(post, postId);
-        return "detail";
-    }
-//
 
+
+    //update post
+    @PostMapping("/update/{postId}")
+    public String updatePost(@ModelAttribute(value="post") Post post, @PathVariable Integer postId, Model model) {
+        System.out.println(post.toString());
+        postService.updatePost(post, postId);
+        return "redirect:/post/details/"+postId;
+    }
+
+    //delete post
     @GetMapping("/delete/{postId}")
     public String deletePost(@PathVariable Integer postId) {
         postService.deletePost(postId);
