@@ -39,12 +39,12 @@ $("#commentForm").submit(function(event) {
 
 
 //submitting new comment
-$(document).on("click", "#commentDetele", function(event) {
-    console.log("clicked");
+$(document).on("click", ".commentDetele", function(event) {
+    // event.preventDefault();
+    console.log(event);
+    console.log(this);
 
-    event.preventDefault();
-
-    var id = event.target.getAttribute("data-th-commentId");
+    var id = event.target.getAttribute("data-commentId");
     console.log(id);
     // setTimeout(function(){
     //     location.reload();

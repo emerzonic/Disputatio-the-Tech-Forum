@@ -37,6 +37,7 @@ public class Post {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "post_id")
+	@OrderBy("id DESC")
 	private List<PostComment> comments;
 
 	@OneToMany(cascade = CascadeType.ALL)

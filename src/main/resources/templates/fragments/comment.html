@@ -3,7 +3,7 @@
 <body>
 <div class="row" th:fragment="new-comment-form">
     <div class="col-lg-10 justify-content-center mx-auto">
-        <div class="mb-3" >
+        <div class="mb-3">
             <!--NEW COMMENT FORM BELOW-->
             <form id="commentForm" class="comment-form">
                 <input id="postId" type="hidden" name="postId" th:value="${post.id}"/>
@@ -21,37 +21,29 @@
 </div>
 
 
-
-<div class="row" th:fragment="comments"  th:if="${post.comments != null}">
-    <div class="col-xl-10 col-lg-10 col-md-10 justify-content-center mx-auto" th:each="comment : ${ post.comments }">
-        <div class="my-2 border p-2">
-            <div class="d-flex">
-                <div class="col-lg-2 bg-info">
-                    <h3>E</h3>
+<div class="row" th:fragment="comments" >
+    <div class="col-xl-10 col-lg-10 col-md-10 mx-auto" th:if="${post.comments != null}">
+        <div class="media my-2 p-2 border-top" th:each="comment : ${ post.comments }">
+            <img class="mr-3 rounded-circle img-fluid" th:src="@{/images/thumbnail.png}" alt="Generic placeholder image">
+            <!--<p class="initiall">E</p>-->
+            <div class="media-body">
+                <h5 class="mt-0"><span th:text="${comment.author}"></span> <span th:text="${comment.dateString}"></span>
+                </h5>
+                <p th:text="${comment.text}"></p>
+                <div class="">
+                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    <span th:text="${comment.likes.size()}"></span>
+                    <span th:text="${comment.replies.size()}"></span>
+                    <span>Replies</span>
                 </div>
-                <div class="col-lg-8 d-flex flex-column">
-                    <div class="col-lg-12 bg-danger">
-                        <span th:text="${comment.author}"></span> <span th:text="${comment.dateString}"></span>
-                    </div>
-                    <div class="col-lg-12 bg-warning">
-                        <p th:text="${comment.text}"></p>
-                    </div>
-                    <div class="col-lg-12 bg-info">
-                        <span th:text="${comment.likes.size()}"></span>
-                        <span th:text="${comment.replies.size()}"></span>
-                    </div>
-                </div>
-                <div class="col-lg-2 bg-secondary">
-                    <div>
-                        <i class="fa fa-ellipsis-v pl-4" data-toggle="dropdown"
-                           aria-hidden="true"></i>
-                        <div class="dropdown-menu">
-                            <ul class="list-group">
-                                <li class="list-group-item list-group-item-action" id="commentEdit" data-th-commentId="${comment.id}" >Edit</li>
-                                <li class="list-group-item list-group-item-action" id="commentDelete" data-th-commentId="${comment.id}" >Delete</li>
-                            </ul>
-                        </div>
-                    </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <i class="fa fa-ellipsis-v pl-4" data-toggle="dropdown" aria-hidden="true"></i>
+                <div class="dropdown-menu border-0 p-0 bg-transparent">
+                    <ul class="list-group w-75">
+                        <li class="list-group-item list-group-item-action commentEdit" data-th-commentId="${comment.id}" ><i class="fas fa-edit"></i> Edit</li>
+                        <li class="list-group-item list-group-item-action commentDelete"  data-th-commentId="${comment.id}" ><i class="fas fa-trash-alt"></i> Delete</li>
+                    </ul>
                 </div>
             </div>
         </div>

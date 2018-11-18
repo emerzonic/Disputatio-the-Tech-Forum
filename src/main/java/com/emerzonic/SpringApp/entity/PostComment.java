@@ -1,24 +1,12 @@
 package com.emerzonic.SpringApp.entity;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapKey;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "comment")
@@ -46,6 +34,7 @@ public class PostComment {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "comment_id")
+	@OrderBy("id DESC")
 	private List<Reply> replies;
 
 	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
