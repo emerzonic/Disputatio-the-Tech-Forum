@@ -151,3 +151,13 @@ textarea{
     background: #ffffff;
 }
 
+.fa-ellipsis-v{
+    visibility:hidden;
+    transition: all 3ms;
+}
+
+
+.media:hover .fa-ellipsis-v{
+    visibility:visible;
+}
+

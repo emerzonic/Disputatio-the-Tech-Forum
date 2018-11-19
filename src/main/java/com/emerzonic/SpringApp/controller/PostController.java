@@ -72,7 +72,6 @@ public class PostController {
     public String edit(@PathVariable Integer postId, Model model) {
         Post post = postService.getPost(postId);
         model.addAttribute("post", post);
-        model.addAttribute("page-title", "Edit Post");
         return "post/edit";
     }
 
@@ -80,7 +79,6 @@ public class PostController {
     //update post
     @PostMapping("/update/{postId}")
     public String updatePost(@ModelAttribute(value="post") Post post, @PathVariable Integer postId, Model model) {
-        System.out.println(post.toString());
         postService.updatePost(post, postId);
         return "redirect:/post/details/"+postId;
     }

@@ -18,7 +18,6 @@ $("#commentForm").submit(function(event) {
     // AJAX post the data to the comment controller.
     var url = "/comment/add";
     var data = {text:text, postId:postId};
-
     $.ajax({
         headers: {
             'Accept': 'application/json',
@@ -38,17 +37,92 @@ $("#commentForm").submit(function(event) {
 });
 
 
-//submitting new comment
-$(document).on("click", ".commentDetele", function(event) {
-    // event.preventDefault();
-    console.log(event);
-    console.log(this);
+//editing comment
+$(document).on("click", ".commentEdit", function(event) {
+    var id = event.target.getAttribute("commentId");
+    $.ajax({
+        method: "GET",
+        url: "/comment/edit/"+id
+    })
+        .done(function( comment ) {
+            if(comment){
+              var $commentDiv = $("#comment-media"+comment.id);
+              var $commentFormDiv = $("#comment-form"+comment.id);
+              var $commentTextarea = $("#comment-textarea"+comment.id);
+              $commentDiv.toggleClass("d-none");
+              $commentTextarea.val(comment.text);
+              $commentFormDiv.toggleClass("d-none");
+            }
+        });
+});
 
-    var id = event.target.getAttribute("data-commentId");
+
+
+//cancel edit
+$(document).on("click", ".cancel-edit", function(event) {
+    var id = event.target.getAttribute("commentId");
+    var $commentDiv = $("#comment-media"+id);
+    var $commentFormDiv = $("#comment-form"+id);
+    var $commentTextarea = $("#comment-textarea"+id);
+    $commentDiv.toggleClass("d-none");
+    $commentFormDiv.toggleClass("d-none");
+    $commentTextarea.val("");
+});
+
+
+//submitting edited comment
+$(".comment-edit-Form").submit(function(event) {
+    console.log('submit');
+    event.preventDefault();
+    console.log(event.target)
+    // var id = event.target.getAttribute("commentId");
+
+    // create new comment object to be submitted
+
+    // var text =  $("#comment-textarea"+id).val();
+    // var id = event.target.getAttribute("commentId");
+    //
+    // // AJAX post the data to the comment controller.
+    // var url = "/comment/add";
+    // var data = {text:text, postId:postId};
+    // $.ajax({
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     },
+    //     'type': 'POST',
+    //     'url': url,
+    //     'data': JSON.stringify(data),
+    //     'dataType': 'json',
+    //     'success': function (data) {
+    //         console.log(data)
+    //         setTimeout(function(){
+    //             location.reload();
+    //         }, 2000);
+    //     }
+    // });
+});
+
+
+
+
+
+
+
+//deleting comment
+$(document).on("click", ".commentDelete", function(event) {
+    var id = event.target.getAttribute("commentId");
     console.log(id);
-    // setTimeout(function(){
-    //     location.reload();
-    // }, 2000);
+    $.ajax({
+        method: "GET",
+        url: "/comment/delete/"+id
+    })
+        .done(function( msg ) {
+            console.log( msg );
+        });
+    setTimeout(function(){
+        location.reload();
+    }, 2000);
 });
 
 

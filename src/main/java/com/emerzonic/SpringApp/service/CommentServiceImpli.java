@@ -35,7 +35,6 @@ public class CommentServiceImpli implements CommentService {
         Post post = postRepository.findById(comment.getPostId()).orElse(null);
         comment.setCreatedOn();
         comment.setAuthor(user.getUsername());
-        System.out.println(comment);
         post.add(comment);
         commentRepository.save(comment);
 	}
@@ -43,17 +42,16 @@ public class CommentServiceImpli implements CommentService {
 
 	@Override
 	@Transactional
-	public PostComment getComment(int commentId) {
-//		return commentRepository.getComment(commentId);
-        return null;
+	public PostComment getComment(Integer commentId) {
+		return commentRepository.findById(commentId).orElse(null);
 	}
 
 
 	@Override
 	@Transactional
-	public void updateComment(int postId, PostComment comment) {
-//        commentRepository.updateComment(postId, comment);
-
+	public void updateComment(Integer commentId, PostComment comment) {
+        PostComment updatedComment = commentRepository.findById(commentId).orElse(null);
+        updatedComment.setText(updatedComment.getText());
 	}
 
 

@@ -23,42 +23,28 @@ public class CommentController {
     //add new comment
     @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public PostComment addComment(@RequestBody PostComment comment) {
-        System.out.println(comment);
         commentService.addComment(comment);
         return comment;
     }
 
 
-//    get comment to be edited
-//    @GetMapping("/edit")
-//    public String editComment(@RequestParam("postId")int postId, @RequestParam("commentId")int commentId, Model model) {
-//        PostComment comment = commentService.getComment(commentId);
-//        Post post = postService.getPost(postId);
-//        PostCommentUtil postcomment = new PostCommentUtil();
-//        postcomment.setPost(post);
-//        postcomment.setComment(comment);
-//        post.add(comment);
-//        model.addAttribute("postcomment", postcomment);
-//        return "edit-comment";
-//
-//}
+    //get comment to be edited
+    @GetMapping("/edit/{commentId}")
+    public PostComment edit(@PathVariable Integer commentId) {
+        return commentService.getComment(commentId);
+}
 
     //update comment mapping
-//    @PostMapping("/update")
-//    public String updateComment(@ModelAttribute("postcomment") PostCommentUtil post, Model model) {
-//        int postId = post.getPost().getId();
-//        PostComment comment = post.getComment();
-//        commentService.updateComment(postId, comment);
-//        Post updatedPost = postService.getPost(postId);
-//        model.addAttribute("post", updatedPost);
-//        return "post-detail";
-//    }
-//
+    @PostMapping(value = "/update/{commentId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public PostComment update(@RequestBody PostComment comment,@PathVariable Integer commentId) {
+        commentService.updateComment(commentId, comment);
+        return comment;
+    }
+
     //delete comment
     @GetMapping("/delete/{commentId}")
     public String deleteComment(@PathVariable Integer commentId) {
-        System.out.println(commentId);
-//        commentService.deleteComment(commentId);
-        return null;
+        commentService.deleteComment(commentId);
+        return "deleted";
     }
 }
