@@ -16,8 +16,7 @@
                             <h3 class="mt-0 mb-1" th:text="${ post.title }"></h3>
                         </div>
                         <div class="border-bottom">
-                            <span class="mt-0 mb-1" th:text="${ post.author }"></span>
-                            <span class="mt-0 mb-1" th:text="${ post.dateString }">N/A</span>
+                            <strong><span class="mr-3 mt-0 mb-1 text-uppercase" th:text="'By '+${post.author}"></span></strong> <span class="mt-0 mb-1 font-italic" th:text="${post.dateString}"></span>
                         </div>
                         <div>
                             <p class="post-detail" th:text="${ post.text }"></p>

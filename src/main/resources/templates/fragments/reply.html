@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div class="row" th:fragment="new-reply-form">
+    <div class="col-lg-10 justify-content-center mx-auto">
+        <div class="mb-3">
+            <!--NEW REPLY FORM BELOW-->
+            <form th:id="'replyForm'+ ${comment.id}" class="comment-form d-none">
+                <div class="form-group">
+                    <textarea th:id="'replyInput'+ ${comment.id}" name="text" class="form-control comment-input autosize-input rounded-0 pb-0" placeholder="Reply this comment..."></textarea>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="button"   th:data-id="${comment.id}" class="btn btn-sm reply-cancel-button">CANCEL</button>
+                    <button type="submit"  th:data-id="${comment.id}" class="btn btn-primary btn-sm reply-submit-button">REPLY</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row" th:fragment="replies">
+    <div class="col-xl-10 col-lg-10 col-md-10 mx-auto" th:if="${comment.replies != null}">
+        <div th:each="reply : ${ comment.replies }" th:id="'collapse'+${comment.id}" class="collapse">
+            <div class="media my-2 p-2 reply-media" th:id="'reply-media'+${reply.id}">
+                <img class="mr-3 rounded-circle img-fluid" th:src="@{/images/thumbnail.png}" alt="user initial image">
+                <!--<p class="initiall">E</p>-->
+                <div class="media-body">
+                    <strong><span class="mr-2 text-uppercase" th:text="${reply.author}"></span></strong> <span class="font-italic" th:text="${reply.dateString}"></span>
+                    <p th:text="${reply.text}"></p>
+                    <div class="">
+                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                        <span th:text="${reply.likes.size()}"></span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-ellipsis-v pl-4 pt-5" data-toggle="dropdown" aria-hidden="true"></i>
+                    <div class="dropdown-menu border-0 p-0 bg-transparent">
+                        <ul class="list-group w-75">
+                            <li class="list-group-item list-group-item-action replyEdit" data-th-replyId="${reply.id}" ><i class="fas fa-edit"></i> Edit</li>
+                            <li class="list-group-item list-group-item-action replyDelete"  data-th-replyId="${reply.id}" ><i class="fas fa-trash-alt"></i> Delete</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-none"  th:id="'reply-form'+ ${reply.id}">
+                <div class="col-lg-10 justify-content-center mx-auto">
+                    <div class="mb-3">
+                        <!--EDIT COMMENT FORM BELOW-->
+                        <form class="reply-edit-form">
+                            <div class="form-group">
+                                <textarea name="reply-text" th:id="${'reply-textarea'+reply.id}" class="form-control comment-input autosize-input rounded-0 pb-0"></textarea>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="button"  data-th-replyId="${reply.id}" class="btn btn-sm cancel-button cancel-edit">CANCEL</button>
+                                <button type="button"  data-th-replyId="${reply.id}" class="btn btn-primary btn-sm submit-button submit-reply">REPLY</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

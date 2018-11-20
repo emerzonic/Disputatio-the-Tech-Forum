@@ -8,12 +8,11 @@
             <form id="commentForm" class="comment-form">
                 <input id="postId" type="hidden" name="postId" th:value="${post.id}"/>
                 <div class="form-group">
-                    <textarea id="commentInput" name="text" class="form-control comment-input rounded-0 pb-0"
-                              placeholder="Add comment to this post..."></textarea>
+                    <textarea id="commentInput" name="text" class="form-control comment-input autosize-input rounded-0 pb-0" placeholder="Add comment to this post..."></textarea>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button type="button" id="cancelButton" class="btn btn-sm cancel-button">CANCEL</button>
-                    <button type="submit" class="btn btn-primary btn-sm submit-button">COMMENT</button>
+                    <button type="button"  id="commentCancelButton" class="btn btn-sm cancel-button d-none">CANCEL</button>
+                    <button type="submit"  id="commentSubmitButton" class="btn btn-primary btn-sm submit-button d-none">COMMENT</button>
                 </div>
             </form>
         </div>
@@ -24,18 +23,17 @@
 <div class="row" th:fragment="comments" >
     <div class="col-xl-10 col-lg-10 col-md-10 mx-auto" th:if="${post.comments != null}">
         <div th:each="comment : ${ post.comments }">
-            <div class="media my-2 p-2 border-top" th:id="'comment-media'+${comment.id}">
+            <div class="media comment-media my-2 p-2" th:id="'comment-media'+${comment.id}">
                 <img class="mr-3 rounded-circle img-fluid" th:src="@{/images/thumbnail.png}" alt="user initial image">
                 <!--<p class="initiall">E</p>-->
                 <div class="media-body">
-                    <h5 class="mt-0"><i class="fas fa-user"></i> <span th:text="${comment.author}"></span> <i class="fas fa-calendar-alt"></i> <span th:text="${comment.dateString}"></span>
-                    </h5>
+                    <strong><span class="mr-3 text-uppercase" th:text="${comment.author}"></span></strong> <span class="font-italic" th:text="${comment.dateString}"></span>
                     <p th:text="${comment.text}"></p>
                     <div class="">
                         <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                         <span th:text="${comment.likes.size()}"></span>
-                        <span th:text="${comment.replies.size()}"></span>
-                        <span>Replies</span>
+                        <button class="btn btn-link reply-action-button"  th:data-id="${comment.id}">REPLY</button>
+                        <p data-toggle="collapse" th:data-target="'#collapse'+${comment.id}" aria-expanded="true" aria-controls="collapseOne">View <span th:text="${comment.replies.size()}"></span> Replies</p>
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
@@ -48,22 +46,24 @@
                     </div>
                 </div>
             </div>
-            <div class="row d-none" th:id="'comment-form'+ ${comment.id}">
+            <div class="row d-none"  th:id="'comment-form'+ ${comment.id}">
                 <div class="col-lg-10 justify-content-center mx-auto">
                     <div class="mb-3">
                         <!--EDIT COMMENT FORM BELOW-->
                         <form class="comment-edit-form">
                             <div class="form-group">
-                                <textarea name="comment-text" th:id="${'comment-textarea'+comment.id}" class="form-control comment-input rounded-0 pb-0"></textarea>
+                                <textarea name="comment-text" th:id="${'comment-textarea'+comment.id}" class="form-control comment-input autosize-input rounded-0 pb-0"></textarea>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button type="button"  data-th-commentId="${comment.id}" class="btn btn-sm cancel-button cancel-edit">CANCEL</button>
-                                <button type="submit"  data-th-commentId="${comment.id}" class="btn btn-primary btn-sm submit-button comment-action">COMMENT</button>
+                                <button type="button"  data-th-commentId="${comment.id}" class="btn btn-primary btn-sm submit-button submit-comment">COMMENT</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            <div th:replace="fragments/reply :: new-reply-form"></div>
+            <div th:replace="fragments/reply :: replies"></div>
         </div>
     </div>
 </div>

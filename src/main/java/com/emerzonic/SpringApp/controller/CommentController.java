@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
     //inject PostService
     private CommentService commentService;
-    private PostService postService;
 
     @Autowired
     public CommentController(CommentService commentService, PostService postService) {
         this.commentService = commentService;
-        this.postService = postService;
     }
 
     //add new comment
-    @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public PostComment addComment(@RequestBody PostComment comment) {
         commentService.addComment(comment);
         return comment;
@@ -35,16 +35,19 @@ public class CommentController {
 }
 
     //update comment mapping
-    @PostMapping(value = "/update/{commentId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public PostComment update(@RequestBody PostComment comment,@PathVariable Integer commentId) {
-        commentService.updateComment(commentId, comment);
+    @PostMapping(value = "/update",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public PostComment update(@RequestBody PostComment comment) {
+        commentService.updateComment(comment.getId(), comment);
         return comment;
     }
 
     //delete comment
     @GetMapping("/delete/{commentId}")
+    @ResponseBody
     public String deleteComment(@PathVariable Integer commentId) {
         commentService.deleteComment(commentId);
-        return "deleted";
+        return "Success";
     }
 }

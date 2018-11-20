@@ -51,7 +51,7 @@ public class CommentServiceImpli implements CommentService {
 	@Transactional
 	public void updateComment(Integer commentId, PostComment comment) {
         PostComment updatedComment = commentRepository.findById(commentId).orElse(null);
-        updatedComment.setText(updatedComment.getText());
+        updatedComment.setText(comment.getText());
 	}
 
 
