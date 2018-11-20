@@ -50,7 +50,7 @@ public class ReplyController {
     //delete reply
     @GetMapping("/delete/{replyId}")
     @ResponseBody
-    public String deleteComment(@PathVariable Integer replyId) {
+    public String deleteReply(@PathVariable Integer replyId) {
         replyService.deleteReply(replyId);
         return "Success";
     }

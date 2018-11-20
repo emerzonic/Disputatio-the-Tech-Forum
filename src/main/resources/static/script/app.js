@@ -113,9 +113,7 @@ $(document).on("click", ".cancel-edit", function(event) {
 
 //submitting edited comment
 $(document).on("click", ".submit-comment", function(event) {
-    console.log('submit');
     event.preventDefault();
-    console.log(event.target)
     var id = event.target.getAttribute("commentId");
     var text =  $("#comment-textarea"+id).val();
 
@@ -171,7 +169,7 @@ $(document).on("click", ".reply-submit-button", function(event) {
     var text = $("#replyInput"+id).val();
     var data = {text:text, commentId:id};
 
-    // AJAX post the data to the comment controller.
+    // AJAX post the data to the reply controller.
     $.ajax({
         headers: {
             'Accept': 'application/json',
@@ -191,7 +189,7 @@ $(document).on("click", ".reply-submit-button", function(event) {
 });
 
 
-//editing comment
+//editing reply
 $(document).on("click", ".replyEdit", function(event) {
     var id = event.target.getAttribute("replyId");
     $.ajax({
@@ -224,11 +222,9 @@ $(document).on("click", ".cancel-edit", function(event) {
 });
 
 
-//submitting edited comment
+//submitting edited reply
 $(document).on("click", ".submit-reply", function(event) {
-    console.log('submit');
     event.preventDefault();
-    console.log(event.target)
     var id = event.target.getAttribute("replyId");
     var text =  $("#reply-textarea"+id).val();
 
@@ -254,7 +250,7 @@ $(document).on("click", ".submit-reply", function(event) {
 
 
 
-//deleting comment
+//deleting reply
 $(document).on("click", ".replyDelete", function(event) {
     var id = event.target.getAttribute("replyId");
     console.log(id);
@@ -270,6 +266,54 @@ $(document).on("click", ".replyDelete", function(event) {
     }, 2000);
 });
 
+
+
+//=====================================================
+//Like AJAX toggle
+//=====================================================
+$(document).on("click", ".toggle-like", function(event) {
+    var userId = event.target.getAttribute("userId");
+    var entityType = event.target.getAttribute("data-entity");
+    var data;
+
+    if(entityType === "post"){
+        var postId = event.target.getAttribute("postId");
+        data = {userId: userId, postId:postId}
+        console.log(data);
+        // postLike(data)
+
+    }else if(entityType === "comment"){
+        var commentId = event.target.getAttribute("commentId");
+        data = {userId: userId, commentId:commentId}
+        console.log(data);
+        // postLike(data)
+    }else{
+        var replyId = event.target.getAttribute("replyId");
+        data = {userId: userId, replyId:replyId}
+        console.log(data);
+        // postLike(data)
+    }
+    //
+    // // AJAX post the data to the reply controller.
+    // function postLike(data){
+    // $.ajax({
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     },
+    //     'type': 'POST',
+    //     'url': "/like/toggle-like",
+    //     'data': JSON.stringify(data),
+    //     'dataType': 'json',
+    //     'success': function (status) {
+    //         console.log(status)
+    //         setTimeout(function(){
+    //             location.reload();
+    //         }, 2000);
+    //     }
+    // });
+    // }
+});
 
 
 
