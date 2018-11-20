@@ -1,11 +1,8 @@
 package com.emerzonic.SpringApp.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="user_like")
@@ -28,14 +25,14 @@ public class Like {
 	@Column(name="reply_id")
 	private Integer replyId;
 
-	public Like() {}
+//	public Like() {}
 	
-	public Like(String author, Integer postId, Integer commentId, Integer replyId) {
-		this.author = author;
-		this.postId = postId;
-		this.commentId = commentId;
-		this.replyId = replyId;
-	}
+//	public Like(String author, Integer postId, Integer commentId, Integer replyId) {
+//		this.author = author;
+//		this.postId = postId;
+//		this.commentId = commentId;
+//		this.replyId = replyId;
+//	}
 	
 	
 	public int getId() {
@@ -57,34 +54,47 @@ public class Like {
 		this.author = author;
 	}
 
-
+    @JsonIgnore
 	public int getPostId() {
 		return postId;
 	}
 
 
-	public void setPostId(int postId) {
-		this.postId = postId;
+	public void setPostId(Integer postId) {
+		if(postId == null) {
+			this.postId = null;
+		}else {
+			this.postId = postId;
+		}
+
 	}
 
-
+    @JsonIgnore
 	public int getCommentId() {
 		return commentId;
 	}
 
 
-	public void setCommentId(int commentId) {
-		this.commentId = commentId;
+	public void setCommentId(Integer commentId) {
+		if(commentId == null) {
+			this.commentId = null;
+		}else {
+			this.commentId = commentId;
+		}
 	}
 
-
+    @JsonIgnore
 	public int getReplyId() {
 		return replyId;
 	}
 
 
-	public void setReplyId(int replyId) {
-		this.replyId = replyId;
+	public void setReplyId(Integer replyId) {
+		if(replyId == null) {
+			this.replyId = null;
+		}else {
+			this.replyId = replyId;
+		}
 	}
 
 

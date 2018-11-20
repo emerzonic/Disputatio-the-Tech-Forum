@@ -272,47 +272,44 @@ $(document).on("click", ".replyDelete", function(event) {
 //Like AJAX toggle
 //=====================================================
 $(document).on("click", ".toggle-like", function(event) {
-    var userId = event.target.getAttribute("userId");
+    var author = event.target.getAttribute("data-author");
     var entityType = event.target.getAttribute("data-entity");
     var data;
 
     if(entityType === "post"){
         var postId = event.target.getAttribute("postId");
-        data = {userId: userId, postId:postId}
-        console.log(data);
-        // postLike(data)
-
+        data = {author: author, postId:postId}
+        postLike(data)
     }else if(entityType === "comment"){
+
         var commentId = event.target.getAttribute("commentId");
-        data = {userId: userId, commentId:commentId}
-        console.log(data);
-        // postLike(data)
+        data = {author: author, commentId:commentId}
+        postLike(data)
     }else{
         var replyId = event.target.getAttribute("replyId");
-        data = {userId: userId, replyId:replyId}
-        console.log(data);
-        // postLike(data)
+        data = {author: author, replyId:replyId}
+        postLike(data)
     }
-    //
-    // // AJAX post the data to the reply controller.
-    // function postLike(data){
-    // $.ajax({
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //     },
-    //     'type': 'POST',
-    //     'url': "/like/toggle-like",
-    //     'data': JSON.stringify(data),
-    //     'dataType': 'json',
-    //     'success': function (status) {
-    //         console.log(status)
-    //         setTimeout(function(){
-    //             location.reload();
-    //         }, 2000);
-    //     }
-    // });
-    // }
+
+    // // AJAX post the data to the like controller.
+    function postLike(data){
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        'type': 'POST',
+        'url': "/like/toggle-like",
+        'data': JSON.stringify(data),
+        'dataType': 'json',
+        'success': function (status) {
+            console.log(status)
+            setTimeout(function(){
+                location.reload();
+            }, 2000);
+        }
+    });
+    }
 });
 
 

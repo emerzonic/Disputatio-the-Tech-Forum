@@ -23,6 +23,7 @@ public class CommentController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public PostComment addComment(@RequestBody PostComment comment) {
+        System.out.println(comment);
         commentService.addComment(comment);
         return comment;
     }
