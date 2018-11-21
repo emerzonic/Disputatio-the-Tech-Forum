@@ -132,7 +132,8 @@ public class Post {
 	}
 
 	
-	public void toggleLike(Like newLike) {
+	public boolean toggleLike(Like newLike) {
+		boolean feedback = true;
 		if (likes == null) {
 			likes = new HashMap<>();
 		}
@@ -141,10 +142,13 @@ public class Post {
 		if (like == null) {
 			likes.put(authorkey, newLike);
 			System.out.println("like added");
+			feedback = false;
+
 		} else {
 			likes.remove(authorkey);
 			System.out.println("like removed");
 		}
+		return feedback;
 	}
 
 	@Override

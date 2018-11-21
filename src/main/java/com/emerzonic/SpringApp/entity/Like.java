@@ -1,7 +1,5 @@
 package com.emerzonic.SpringApp.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
@@ -25,14 +23,14 @@ public class Like {
 	@Column(name="reply_id")
 	private Integer replyId;
 
-//	public Like() {}
+	public Like() {}
 	
-//	public Like(String author, Integer postId, Integer commentId, Integer replyId) {
-//		this.author = author;
-//		this.postId = postId;
-//		this.commentId = commentId;
-//		this.replyId = replyId;
-//	}
+	public Like(String author, Integer postId, Integer commentId, Integer replyId) {
+		this.author = author;
+		this.postId = postId;
+		this.commentId = commentId;
+		this.replyId = replyId;
+	}
 	
 	
 	public int getId() {
@@ -54,47 +52,34 @@ public class Like {
 		this.author = author;
 	}
 
-    @JsonIgnore
+
 	public int getPostId() {
 		return postId;
 	}
 
 
 	public void setPostId(Integer postId) {
-		if(postId == null) {
-			this.postId = null;
-		}else {
 			this.postId = postId;
-		}
-
 	}
 
-    @JsonIgnore
+
 	public int getCommentId() {
 		return commentId;
 	}
 
 
 	public void setCommentId(Integer commentId) {
-		if(commentId == null) {
-			this.commentId = null;
-		}else {
 			this.commentId = commentId;
-		}
 	}
 
-    @JsonIgnore
+
 	public int getReplyId() {
 		return replyId;
 	}
 
 
 	public void setReplyId(Integer replyId) {
-		if(replyId == null) {
-			this.replyId = null;
-		}else {
 			this.replyId = replyId;
-		}
 	}
 
 

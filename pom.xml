@@ -103,8 +103,6 @@
 			<!--<scope>test</scope>-->
 		<!--</dependency>-->
 
-		<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jasper -->
-
 	</dependencies>
 
 	<build>

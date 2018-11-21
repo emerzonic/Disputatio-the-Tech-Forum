@@ -1,22 +1,10 @@
 package com.emerzonic.SpringApp.entity;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapKey;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 	@Table(name="reply")
@@ -112,21 +100,26 @@ import javax.persistence.Transient;
 		public void setLikes(Map<String, Like> likes) {
 			this.likes = likes;
 		}
-		
-		public void toggleLike(Like newLike) {
-			if (likes == null) {
-				likes = new HashMap<>();
-			}
-			String authorkey = newLike.getAuthor();
-			Like like = likes.get(authorkey);
-			if (like == null) {
-				likes.put(authorkey, newLike);
-				System.out.println("like added");
-			} else {
-				likes.remove(authorkey);
-				System.out.println("like removed");
-			}
+
+	public boolean toggleLike(Like newLike) {
+		boolean feedback = true;
+		if (likes == null) {
+			likes = new HashMap<>();
 		}
+		String authorkey = newLike.getAuthor();
+		Like like = likes.get(authorkey);
+		if (like == null) {
+			likes.put(authorkey, newLike);
+			System.out.println("like added");
+			feedback = false;
+
+		} else {
+			likes.remove(authorkey);
+			System.out.println("like removed");
+		}
+		return feedback;
+		}
+
 
 		@Override
 		public String toString() {

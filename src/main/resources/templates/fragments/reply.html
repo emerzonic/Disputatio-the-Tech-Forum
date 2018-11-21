@@ -34,7 +34,7 @@
                     <strong><span class="mr-2 text-uppercase" th:text="${reply.author}"></span></strong> <span class="font-italic" th:text="${reply.dateString}"></span>
                     <p th:text="${reply.text}"></p>
                     <div class="">
-                        <i class="fa fa-thumbs-up toggle-like" data-author="emerson" data-th-replyId="${reply.id}" data-entity="reply" aria-hidden="true"></i>
+                        <i class="fa fa-thumbs-up toggle-like" data-author="emerson" data-th-replyId="${reply.id}" data-th-commentId="${0}" data-th-postId="${0}" data-entity="reply" aria-hidden="true"></i>
                         <span th:text="${reply.likes.size()}"></span>
                     </div>
                 </div>

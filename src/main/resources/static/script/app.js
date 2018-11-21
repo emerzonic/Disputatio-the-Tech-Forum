@@ -272,22 +272,21 @@ $(document).on("click", ".replyDelete", function(event) {
 //Like AJAX toggle
 //=====================================================
 $(document).on("click", ".toggle-like", function(event) {
-    var author = event.target.getAttribute("data-author");
-    var entityType = event.target.getAttribute("data-entity");
-    var data;
+    var author = event.target.getAttribute("data-author"),
+        entityType = event.target.getAttribute("data-entity"),
+        postId = event.target.getAttribute("postId"),
+        commentId = event.target.getAttribute("commentId"),
+        replyId = event.target.getAttribute("replyId"),
+        data;
 
     if(entityType === "post"){
-        var postId = event.target.getAttribute("postId");
-        data = {author: author, postId:postId}
+        data = {author: author, postId:postId, commentId:commentId, replyId:replyId};
         postLike(data)
     }else if(entityType === "comment"){
-
-        var commentId = event.target.getAttribute("commentId");
-        data = {author: author, commentId:commentId}
+        data = {author: author, postId:postId, commentId:commentId, replyId:replyId};
         postLike(data)
     }else{
-        var replyId = event.target.getAttribute("replyId");
-        data = {author: author, replyId:replyId}
+        data = {author: author, postId:postId, commentId:commentId, replyId:replyId};
         postLike(data)
     }
 
