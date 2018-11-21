@@ -17,45 +17,19 @@ public class UserServiceImpli implements UserService {
 	}
 
 
-	
-	
 	@Override
 	@Transactional
 	public void addUser(User user) {
 		userRepository.save(user);
 
 	}
-//
-//
-//
+
+
 	@Override
 	@Transactional
 	public User getUser(Integer userId) {
 	    return userRepository.findById(userId).orElse(null);
 	}
-//
-
-//	@Override
-//	@Transactional
-//	public void updatePost(Post post, Integer postId) {
-//	    postRepository.save(post);
-//	}
-////
-////
-////
-//	@Override
-//	@Transactional
-//	public void deletePost(int postId) {
-//	    postRepository.deleteById(postId);
-//
-//	}
-////
-////
-//	@Override
-//	@Transactional
-//	public List<Post> searchPosts(String searchTerm) {
-//		return null;
-//	}
 	
 	
 }

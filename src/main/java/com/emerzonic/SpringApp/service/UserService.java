@@ -9,9 +9,4 @@ public interface UserService {
 
 	User getUser(Integer UserId);
 
-//	void updatePost(Post post, Integer postId);
-//
-//	void deletePost(int postId);
-
-
 }

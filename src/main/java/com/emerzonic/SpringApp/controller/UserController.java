@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
     private UserService userService;
 
-    //inject PostService
+    //inject UserService
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
@@ -25,55 +25,24 @@ public class UserController {
 
 //    //get new post form
     @GetMapping("/signup")
-    public String newPost(Model model) {
+    public String newUser(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         model.addAttribute("page-title", "Sign Up");
-        return "user/form";
+        return "user/user-form";
     }
 //
 //
     //add new post
     @PostMapping("/signup")
-    public String addPost(@ModelAttribute(value="user") User user) {
+    public String addUser(@ModelAttribute(value="user") User user) {
+        System.out.println(user);
         userService.addUser(user);
         return "redirect:/post/list";
     }
-//
-//
-//
-    //get post details
-//    @GetMapping("/details/{postId}")
-//    public String getPost(@PathVariable Integer postId, Model model) {
-//        Post post = postService.getPost(postId);
-//        model.addAttribute("post", post);
-//        return "post/detail";
-//    }
-////
-////
-////
-//    //get post to be edited
-//    @GetMapping("/edit/{postId}")
-//    public String edit(@PathVariable Integer postId, Model model) {
-//        Post post = postService.getPost(postId);
-//        model.addAttribute("post", post);
-//        return "post/edit";
-//    }
-////
-////
-////    //update post
-//    @PostMapping("/update/{postId}")
-//    public String updatePost(@RequestBody Post post, @PathVariable Integer postId, Model model) {
-//        postService.updatePost(post, postId);
-//        model.addAttribute("postId", postId);
-//        return "forward:/detail?postId=postId";
-//    }
-////
-//
-//    @GetMapping("/delete/{postId}")
-//    public String deletePost(@PathVariable Integer postId) {
-//        postService.deletePost(postId);
-//        return "redirect:/post/list";
-//    }
+
+
+
+
 }
 

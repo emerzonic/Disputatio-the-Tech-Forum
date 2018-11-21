@@ -50,9 +50,7 @@ public class PostServiceImpli implements PostService {
 	    postRepository.save(post);
 
 	}
-//
-//
-//
+
 	@Override
 	@Transactional
 	public Post getPost(Integer postId) {
@@ -60,7 +58,7 @@ public class PostServiceImpli implements PostService {
 	    post.setComments(post.getComments());
 	    return post;
 	}
-//
+
 
 	@Override
 	@Transactional
@@ -69,17 +67,16 @@ public class PostServiceImpli implements PostService {
         updatedPost.setText(post.getText());
         updatedPost.setTitle(post.getTitle());
 	}
-//
-//
-//
+
+
 	@Override
 	@Transactional
 	public void deletePost(int postId) {
 	    postRepository.deleteById(postId);
 
 	}
-//
-//
+
+
 	@Override
 	@Transactional
 	public List<Post> searchPosts(String searchTerm) {
