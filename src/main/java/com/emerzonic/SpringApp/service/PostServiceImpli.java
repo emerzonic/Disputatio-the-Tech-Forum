@@ -43,7 +43,7 @@ public class PostServiceImpli implements PostService {
 	@Override
 	@Transactional
 	public void addPost(Post post) {
-        //hardcoding current user
+        //hardcoding current user-forms
 	    User user = userRepository.findById(1).orElse(null);
 	    post.setAuthor(user.getUsername());
         post.setCreatedOn();

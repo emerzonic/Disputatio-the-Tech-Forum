@@ -9,4 +9,6 @@ public interface UserService {
 
 	User getUser(Integer UserId);
 
+	boolean checkIfUserExist(Integer UserId);
+
 }

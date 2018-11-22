@@ -8,7 +8,7 @@
 <!-- 	NAVBAR STARTS -->
 <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark fixed-top" th:fragment="navbar">
     <div class="container">
-        <a class="navbar-brand" href="/"><i class="fas fa-pencil-ruler"></i> DB</a>
+        <a class="navbar-brand rounded p-2" href="/"><i class="fas fa-pencil-ruler"></i> DB</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -16,13 +16,35 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item"><a class="nav-link" href="#">Post
-                    Analytics</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="/user/signup">Sign Up</a></li>
-                <li class="nav-item"><a class="nav-link" href="/user/signup">Sign In</a></li>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mt-2 mt-lg-0">
+                <!--<li class="nav-item"><a class="nav-link" href="#">Post Analytics</a></li>-->
+                <!--<li class="nav-item"><a class="nav-link" href="#">Profile</a></li>-->
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/signup">
+                        <i class="fas fa-user-plus"></i>
+                        Sign Up
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                </li>
+                <form action="#" th:action="@{/logout}"  method="post">
+                    <li class="nav-item">
+                        <button type="submit" class="nav-link btn-link bg-transparent border-0">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </button>
+                    </li>
+                </form>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

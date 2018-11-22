@@ -24,8 +24,12 @@ public class UserServiceImpli implements UserService {
 
 	}
 
+    @Override
+    public boolean checkIfUserExist(Integer userId) {
+        return userRepository.existsById(userId);
+    }
 
-	@Override
+    @Override
 	@Transactional
 	public User getUser(Integer userId) {
 	    return userRepository.findById(userId).orElse(null);

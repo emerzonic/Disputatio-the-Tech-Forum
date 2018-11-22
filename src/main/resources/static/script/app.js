@@ -4,7 +4,7 @@
 //GENERAL PAGE OPERATIONS
 //==========================================================
 //add auto height to input fields
-autosize(document).getElementsByClassName("autosize-input");
+autosize(document).getElementsByClassName(".form-control");
 
 
 //control navbar background color on page scroll
@@ -12,9 +12,10 @@ $(function() {
     $(document).scroll(function() {
         var $nav = $("#mainNav");
         if ($(window).scrollTop() > $nav.height()) {
-            $nav.addClass("bg-dark");
+            $nav.addClass("bg-dark").removeClass("mt-5");
+
         } else {
-            $nav.removeClass("bg-dark");
+            $nav.removeClass("bg-dark").addClass("mt-5");
         }
     })
 });
@@ -59,6 +60,8 @@ $("#commentForm").submit(function(event) {
     // AJAX post the data to the comment controller.
     var url = "/comment/add";
     var data = {text:text, postId:postId};
+    console.log(data)
+
     $.ajax({
         headers: {
             'Accept': 'application/json',

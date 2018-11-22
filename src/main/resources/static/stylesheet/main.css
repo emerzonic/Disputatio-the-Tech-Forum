@@ -8,6 +8,10 @@ body{
 	transition:all 1500ms;
 }
 
+.nav-link{
+    font-size: 1.4rem;
+}
+
 
 .top-header{
 	background-image:url("../images/header_background.jpg");
@@ -86,7 +90,8 @@ body{
 }
 
 .navbar-brand{
-	font-size: 3rem;
+	font-size: 1.5rem;
+	border: white 3px solid;
 }
 
 .cancel-button{
