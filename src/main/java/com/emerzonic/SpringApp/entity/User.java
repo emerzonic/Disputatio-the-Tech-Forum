@@ -2,6 +2,8 @@ package com.emerzonic.SpringApp.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +16,15 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
-	
+
+	@NotNull
+	@NotEmpty
 	@Column(name="username")
 	private String username;
-	
+
+
+	@NotNull
+	@NotEmpty
 	@Column(name="password")
 	private String password;
 	

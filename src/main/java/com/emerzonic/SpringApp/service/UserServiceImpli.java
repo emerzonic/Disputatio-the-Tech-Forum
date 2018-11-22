@@ -3,6 +3,8 @@ package com.emerzonic.SpringApp.service;
 import com.emerzonic.SpringApp.DAO.UserRepository;
 import com.emerzonic.SpringApp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +27,13 @@ public class UserServiceImpli implements UserService {
 	}
 
     @Override
-    public boolean checkIfUserExist(Integer userId) {
-        return userRepository.existsById(userId);
+    public User findByUserName(String userName) {
+        return null;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return null;
     }
 
     @Override

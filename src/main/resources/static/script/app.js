@@ -4,7 +4,7 @@
 //GENERAL PAGE OPERATIONS
 //==========================================================
 //add auto height to input fields
-autosize(document).getElementsByClassName(".form-control");
+autosize(document).getElementsByClassName("autosize-input");
 
 
 //control navbar background color on page scroll

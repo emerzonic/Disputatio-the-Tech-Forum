@@ -40,13 +40,10 @@ public class UserController {
         if(bindingResult.hasErrors()){
             return "user-forms/signup-form";
         }
-
-        if(userService.checkIfUserExist(user.getId())){
-            model.addAttribute("user-exist" ,true);
+        if(userService.getUser(user.getId())!= null){
+            model.addAttribute("exist" ,true);
             return "user-forms/signup-form";
-
         }
-        System.out.println(user);
         userService.addUser(user);
         return "redirect:/user-forms/login";
     }
