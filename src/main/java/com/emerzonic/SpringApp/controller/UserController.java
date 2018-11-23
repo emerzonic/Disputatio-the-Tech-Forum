@@ -34,18 +34,19 @@ public class UserController {
         return "user-forms/signup-form";
     }
 
+
     //process new user
     @PostMapping("/signup")
     public String createUser(@ModelAttribute(value="user") @Valid User user, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()){
             return "user-forms/signup-form";
         }
-        if(userService.findByUserName(user.getUsername())!= null){
+        if(userService.checkIfUserExist(user.getUsername())){
             model.addAttribute("exist" ,true);
             return "user-forms/signup-form";
         }
         userService.createUser(user);
-        return "redirect:/user-forms/login";
+        return "redirect:/user/login";
     }
 
 

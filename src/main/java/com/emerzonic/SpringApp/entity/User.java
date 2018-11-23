@@ -22,7 +22,6 @@ public class User {
 
 
 	@NotNull
-	@NotEmpty
     @Size(min = 4)
 	@Column(name="password")
 	private String password;
@@ -40,13 +39,6 @@ public class User {
 		this.password = password;
 	}
 
-//	public int getId() {
-//		return id;
-//	}
-
-//	public void setId(int id) {
-//		this.id = id;
-//	}
 
 	public String getUsername() {
 		return username;
@@ -63,14 +55,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-//	public List<Role> getRoles() {
-//		return roles;
-//	}
-//
-//	public void setRoles(List<Role> roles) {
-//		this.roles = roles;
-//	}
+	
 
 	@Override
 	public String toString() {
