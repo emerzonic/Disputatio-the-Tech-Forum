@@ -2,10 +2,8 @@ package com.emerzonic.SpringApp.service;
 
 import com.emerzonic.SpringApp.DAO.CommentRepository;
 import com.emerzonic.SpringApp.DAO.PostRepository;
-import com.emerzonic.SpringApp.DAO.UserRepository;
 import com.emerzonic.SpringApp.entity.Post;
 import com.emerzonic.SpringApp.entity.PostComment;
-import com.emerzonic.SpringApp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,23 +16,23 @@ import org.springframework.transaction.annotation.Transactional;
 public class CommentServiceImpli implements CommentService {
     private CommentRepository commentRepository;
     private PostRepository postRepository;
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    public CommentServiceImpli(CommentRepository commentRepository, PostRepository postRepository, UserRepository userRepository) {
+    public CommentServiceImpli(CommentRepository commentRepository, PostRepository postRepository, UserService userService) {
         this.commentRepository = commentRepository;
         this.postRepository = postRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
 
 	@Override
 	@Transactional
 	public void addComment(PostComment comment) {
-        User user = userRepository.findById("emerson").orElse(null);
+        String author = userService.getCurrentUserUsername();
         Post post = postRepository.findById(comment.getPostId()).orElse(null);
         comment.setCreatedOn();
-        comment.setAuthor(user.getUsername());
+        comment.setAuthor(author);
         post.add(comment);
         commentRepository.save(comment);
 	}

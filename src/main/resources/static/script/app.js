@@ -60,8 +60,6 @@ $("#commentForm").submit(function(event) {
     // AJAX post the data to the comment controller.
     var url = "/comment/add";
     var data = {text:text, postId:postId};
-    console.log(data)
-
     $.ajax({
         headers: {
             'Accept': 'application/json',

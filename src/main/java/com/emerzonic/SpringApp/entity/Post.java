@@ -85,7 +85,6 @@ public class Post {
 	}
 
 	public void setCreatedOn() {
-		System.out.println("reached here!");
 		this.createdOn = new Timestamp(System.currentTimeMillis());
 	}
 

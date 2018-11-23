@@ -1,10 +1,7 @@
 package com.emerzonic.SpringApp.service;
 
-import com.emerzonic.SpringApp.DAO.CommentRepository;
 import com.emerzonic.SpringApp.DAO.PostRepository;
-import com.emerzonic.SpringApp.DAO.UserRepository;
 import com.emerzonic.SpringApp.entity.Post;
-import com.emerzonic.SpringApp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -18,18 +15,16 @@ import java.util.List;
 @Service
 public class PostServiceImpli implements PostService {
 	private PostRepository postRepository;
-    private UserRepository userRepository;
-    private CommentRepository commentRepository;
+    private UserService userService;
 
-    @Autowired
-    public PostServiceImpli(PostRepository postRepository, UserRepository userRepository, CommentRepository commentRepository) {
+
+	@Autowired
+    public PostServiceImpli(PostRepository postRepository, UserService userService) {
         this.postRepository = postRepository;
-        this.userRepository = userRepository;
-        this.commentRepository = commentRepository;
-
+        this.userService = userService;
     }
 
-    @Autowired
+
 
 
 	@Override
@@ -43,9 +38,8 @@ public class PostServiceImpli implements PostService {
 	@Override
 	@Transactional
 	public void addPost(Post post) {
-        //hardcoding current user-forms
-	    User user = userRepository.findById("emerson").orElse(null);
-	    post.setAuthor(user.getUsername());
+        String author = userService.getCurrentUserUsername();
+	    post.setAuthor(author);
         post.setCreatedOn();
 	    postRepository.save(post);
 

@@ -22,12 +22,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-//        User.UserBuilder users = User.withDefaultPasswordEncoder();
         auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select username,password, enabled from users where username=?")
-//                .authoritiesByUsernameQuery("select username,role, enabled from role where username=?")
+                .usersByUsernameQuery("select username as principal,password as credentials, true from user where username=?")
+                .authoritiesByUsernameQuery("select username as principal,password as credentials, true from user where username=?")
                 .passwordEncoder(passwordEncoder());
-//                .withUser(users.username("john").password("pass").roles("user"));
 
     }
 

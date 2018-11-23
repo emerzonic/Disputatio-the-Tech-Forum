@@ -11,4 +11,6 @@ public interface UserService  {
 
 	boolean checkIfUserExist(String username);
 
+	String getCurrentUserUsername();
+
 }
