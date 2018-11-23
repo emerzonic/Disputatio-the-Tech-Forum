@@ -6,30 +6,30 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
-@Entity
+	@Entity
 	@Table(name="reply")
 	public class Reply {
-		
+
 		@Id
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		@Column(name="id")
 		private int id;
-		
+
 		@Column(name="text")
 		private String text;
-		
+
 		@Column(name = "created_on", nullable = false, updatable = false)
 		private Timestamp createdOn;
 
 		@Transient
 		private String dateString;
-		
+
 		@Column(name="author")
 		private String author;
-		
+
 		@Column(name="comment_id")
 		private int commentId;
-		
+
 		@OneToMany(cascade = CascadeType.ALL)
 		@JoinColumn(name="reply_id")
 		@MapKey(name = "author")
@@ -101,24 +101,24 @@ import java.util.Map;
 			this.likes = likes;
 		}
 
-	public boolean toggleLike(Like newLike) {
-		boolean feedback = true;
-		if (likes == null) {
-			likes = new HashMap<>();
-		}
-		String authorkey = newLike.getAuthor();
-		Like like = likes.get(authorkey);
-		if (like == null) {
-			likes.put(authorkey, newLike);
-			System.out.println("like added");
-			feedback = false;
+		public boolean toggleLike(Like newLike) {
+			boolean feedback = true;
+			if (likes == null) {
+				likes = new HashMap<>();
+			}
+			String authorkey = newLike.getAuthor();
+			Like like = likes.get(authorkey);
+			if (like == null) {
+				likes.put(authorkey, newLike);
+				System.out.println("like added");
+				feedback = false;
 
-		} else {
-			likes.remove(authorkey);
-			System.out.println("like removed");
-		}
-		return feedback;
-		}
+			} else {
+				likes.remove(authorkey);
+				System.out.println("like removed");
+			}
+			return feedback;
+			}
 
 
 		@Override

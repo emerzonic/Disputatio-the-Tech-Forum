@@ -3,8 +3,7 @@ package com.emerzonic.SpringApp.service;
 import com.emerzonic.SpringApp.DAO.UserRepository;
 import com.emerzonic.SpringApp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,26 +20,15 @@ public class UserServiceImpli implements UserService {
 
 	@Override
 	@Transactional
-	public void addUser(User user) {
+	public void createUser(User user) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		user.setPassword(encoder.encode(user.getPassword()));
 		userRepository.save(user);
 
 	}
 
     @Override
     public User findByUserName(String userName) {
-        return null;
+        return userRepository.findById(userName).orElse(null);
     }
-
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return null;
-    }
-
-    @Override
-	@Transactional
-	public User getUser(Integer userId) {
-	    return userRepository.findById(userId).orElse(null);
-	}
-	
-	
 }

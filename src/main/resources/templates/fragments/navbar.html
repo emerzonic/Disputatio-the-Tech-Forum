@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 
 </head>
@@ -41,9 +41,9 @@
                     </li>
                 </form>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <p class="nav-link" sec:authentication="name">
                         <i class="fas fa-user"></i>
-                    </a>
+                    </p>
                 </li>
             </ul>
         </div>

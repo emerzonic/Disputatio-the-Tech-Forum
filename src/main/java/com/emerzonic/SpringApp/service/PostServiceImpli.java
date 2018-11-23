@@ -44,7 +44,7 @@ public class PostServiceImpli implements PostService {
 	@Transactional
 	public void addPost(Post post) {
         //hardcoding current user-forms
-	    User user = userRepository.findById(1).orElse(null);
+	    User user = userRepository.findById("emerson").orElse(null);
 	    post.setAuthor(user.getUsername());
         post.setCreatedOn();
 	    postRepository.save(post);

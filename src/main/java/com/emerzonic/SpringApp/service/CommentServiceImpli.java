@@ -31,7 +31,7 @@ public class CommentServiceImpli implements CommentService {
 	@Override
 	@Transactional
 	public void addComment(PostComment comment) {
-        User user = userRepository.findById(1).orElse(null);
+        User user = userRepository.findById("emerson").orElse(null);
         Post post = postRepository.findById(comment.getPostId()).orElse(null);
         comment.setCreatedOn();
         comment.setAuthor(user.getUsername());

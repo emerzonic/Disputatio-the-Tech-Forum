@@ -1,7 +1,6 @@
 package com.emerzonic.SpringApp.service;
 
 import com.emerzonic.SpringApp.DAO.CommentRepository;
-import com.emerzonic.SpringApp.DAO.PostRepository;
 import com.emerzonic.SpringApp.DAO.ReplyRepository;
 import com.emerzonic.SpringApp.DAO.UserRepository;
 import com.emerzonic.SpringApp.entity.PostComment;
@@ -15,14 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ReplyServiceImpli implements ReplyService {
     private CommentRepository commentRepository;
-    private PostRepository postRepository;
     private UserRepository userRepository;
     private ReplyRepository replyRepository;
 
     @Autowired
-    public ReplyServiceImpli(CommentRepository commentRepository, PostRepository postRepository, UserRepository userRepository, ReplyRepository replyRepository) {
+    public ReplyServiceImpli(CommentRepository commentRepository, UserRepository userRepository, ReplyRepository replyRepository) {
         this.commentRepository = commentRepository;
-        this.postRepository = postRepository;
         this.userRepository = userRepository;
         this.replyRepository = replyRepository;
     }
@@ -31,7 +28,7 @@ public class ReplyServiceImpli implements ReplyService {
 	@Override
 	@Transactional
 	public void addReply(Reply reply) {
-        User user = userRepository.findById(1).orElse(null);
+        User user = userRepository.findById("emerson").orElse(null);
         PostComment comment = commentRepository.findById(reply.getCommentId()).orElse(null);
         reply.setCreatedOn();
         reply.setAuthor(user.getUsername());
