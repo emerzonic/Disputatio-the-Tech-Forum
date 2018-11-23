@@ -1,5 +1,4 @@
 
-
 //==========================================================
 //GENERAL PAGE OPERATIONS
 //==========================================================
@@ -50,32 +49,44 @@ $(".reply-cancel-button").click(function(event) {
 //=====================================================
 //COMMENT AJAX OPERATIONS
 //=====================================================
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+
+
+function reloadPageLocation(sec){
+    setTimeout(function(){
+        location.reload();
+    }, sec);
+}
 
 //submitting new comment
 $("#commentForm").submit(function(event) {
     event.preventDefault();
     // retrieve data from form
-      var text = $("#commentInput").val();
-      var  postId = $("#postId").val();
+    var $commentInput = $("#commentInput");
+    var text = $commentInput.val();
+    var  postId = $("#postId").val();
+
     // AJAX post the data to the comment controller.
     var url = "/comment/add";
     var data = {text:text, postId:postId};
     $.ajax({
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         'type': 'POST',
         'url': url,
         'data': JSON.stringify(data),
         'dataType': 'json',
-        'success': function (status) {
-            console.log(status)
-            setTimeout(function(){
-                location.reload();
-            }, 2000);
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader(header, token);
         }
+    }).done(function( msg ) {
+        console.log( msg );
     });
+    $commentInput.val('');
+    reloadPageLocation(2000);
 });
 
 
@@ -116,7 +127,8 @@ $(document).on("click", ".cancel-edit", function(event) {
 $(document).on("click", ".submit-comment", function(event) {
     event.preventDefault();
     var id = event.target.getAttribute("commentId");
-    var text =  $("#comment-textarea"+id).val();
+    var $commentTextarea = $("#comment-textarea"+id);
+    var text = $commentTextarea.val();
 
     // AJAX post the updated comment to the comment controller.
     var url = "/comment/update";
@@ -130,12 +142,14 @@ $(document).on("click", ".submit-comment", function(event) {
         'url': url,
         'data': JSON.stringify(data),
         'dataType': 'json',
-        'success': function (status) {
-            setTimeout(function(){
-                location.reload();
-            }, 2000);
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader(header, token);
         }
+    }).done(function( msg ) {
+        console.log( msg );
     });
+    $commentTextarea.val('');
+    reloadPageLocation(2000);
 });
 
 
@@ -143,17 +157,13 @@ $(document).on("click", ".submit-comment", function(event) {
 //deleting comment
 $(document).on("click", ".commentDelete", function(event) {
     var id = event.target.getAttribute("commentId");
-    console.log(id);
     $.ajax({
         method: "GET",
-        url: "/comment/delete/"+id
+        url: "/comment/delete/"+id,
     })
-        .done(function( msg ) {
-            console.log( msg );
+        .done(function( msg) {
         });
-    setTimeout(function(){
-        location.reload();
-    }, 2000);
+    reloadPageLocation(2000);
 });
 
 
@@ -167,7 +177,8 @@ $(document).on("click", ".reply-submit-button", function(event) {
     event.preventDefault();
     var id = event.target.getAttribute("data-id");
     // retrieve data from reply input
-    var text = $("#replyInput"+id).val();
+    var $replyInput = $("#replyInput"+id);
+    var text = $replyInput.val();
     var data = {text:text, commentId:id};
 
     // AJAX post the data to the reply controller.
@@ -180,13 +191,14 @@ $(document).on("click", ".reply-submit-button", function(event) {
         'url': "/reply/add",
         'data': JSON.stringify(data),
         'dataType': 'json',
-        'success': function (status) {
-            console.log(status)
-            setTimeout(function(){
-                location.reload();
-            }, 2000);
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader(header, token);
         }
+    }).done(function( msg ) {
+        console.log( msg );
     });
+    $replyInput.val('');
+    reloadPageLocation(2000);
 });
 
 
@@ -227,7 +239,8 @@ $(document).on("click", ".cancel-edit", function(event) {
 $(document).on("click", ".submit-reply", function(event) {
     event.preventDefault();
     var id = event.target.getAttribute("replyId");
-    var text =  $("#reply-textarea"+id).val();
+    var $replyTextarea = $("#reply-textarea"+id);
+    var text =  $replyTextarea.val();
 
     // AJAX post the updated reply to the reply controller.
     var url = "/reply/update";
@@ -241,12 +254,14 @@ $(document).on("click", ".submit-reply", function(event) {
         'url': url,
         'data': JSON.stringify(data),
         'dataType': 'json',
-        'success': function (status) {
-            setTimeout(function(){
-                location.reload();
-            }, 2000);
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader(header, token);
         }
+    }).done(function( msg ) {
+        console.log( msg );
     });
+    $replyTextarea.val('');
+    reloadPageLocation(2000);
 });
 
 
@@ -254,7 +269,6 @@ $(document).on("click", ".submit-reply", function(event) {
 //deleting reply
 $(document).on("click", ".replyDelete", function(event) {
     var id = event.target.getAttribute("replyId");
-    console.log(id);
     $.ajax({
         method: "GET",
         url: "/reply/delete/"+id
@@ -262,9 +276,7 @@ $(document).on("click", ".replyDelete", function(event) {
         .done(function( msg ) {
             console.log( msg );
         });
-    setTimeout(function(){
-        location.reload();
-    }, 2000);
+    reloadPageLocation(2000);
 });
 
 
@@ -302,13 +314,13 @@ $(document).on("click", ".toggle-like", function(event) {
         'url': "/like/toggle-like",
         'data': JSON.stringify(data),
         'dataType': 'json',
-        'success': function (status) {
-            console.log(status)
-            setTimeout(function(){
-                location.reload();
-            }, 2000);
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader(header, token);
         }
+    }).done(function( msg ) {
+        console.log( msg );
     });
+        reloadPageLocation(2000);
     }
 });
 

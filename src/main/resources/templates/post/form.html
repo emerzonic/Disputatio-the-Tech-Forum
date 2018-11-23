@@ -4,7 +4,7 @@
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
 <div th:replace="fragments/header-section :: header-section"></div>
-<div class="container px-lg-5 px-sm-0">
+<div class="container px-lg-5 px-sm-0 rounded">
     <div class="row">
         <div class="col-lg-10 justify-content-center mx-auto">
             <div class="post-list-content">
@@ -19,7 +19,7 @@
                             <input  th:field="*{title}"
                                     name="title"
                                     type="text"
-                                    class="form-control post-title-input autosize-input rounded-0"
+                                    class="form-control post-title-input autosize-input rounded-0 border-0"
                                     id="postTitleInput"
                                     aria-describedby="textHelp"
                                     placeholder="Please provide a title for your post..."

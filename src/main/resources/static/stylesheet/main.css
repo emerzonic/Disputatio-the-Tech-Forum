@@ -1,18 +1,38 @@
-
+/*GENERAL CROSS-PAGES STYLES*/
 body{
-	background-color: #eeeeee;;
+	background-color:#dedee2;
 	
 }
 
+.display-4 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+
+/*NAVBAR STYLES*/
 .navbar.bg-dark{
 	transition:all 1500ms;
 }
+
+.navbar-brand{
+    font-size: 1rem;
+    border: white 3px solid;
+    background: #033542;
+}
+
 
 .nav-link{
     font-size: 1.4rem;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffff;
+}
 
+
+/*GENERAL HEADER STYLES*/
 .top-header{
 	background-image:url("../images/header_background.jpg");
 	background-repeat:no-repeat;
@@ -22,7 +42,37 @@ body{
  */	
 }
 
+/*BLOG POSTS STYLES*/
 
+
+
+/*POST DETAIL STYLES*/
+.card-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.author{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.date-string{
+    font-style: italic;
+    font-weight: 400;
+}
+
+
+
+
+
+
+
+/*MAIN FOOTER STYLES*/
 
 .footer{
 	background:#5e8598;
@@ -30,13 +80,19 @@ body{
 	height:auto;
 	}
 
-
+/*HOME FOOTER STYLES*/
 .home-footer{
 	background:white;
 	color:#5e8598;;
 	height:auto;
 	}
-	
+
+.copy-box{
+    background: #5e8598;
+}
+
+
+
 /* to be combined into one selector */
  .comment-input{
 	border: none;
@@ -89,10 +145,6 @@ body{
 	width: 100%;
 }
 
-.navbar-brand{
-	font-size: 1.5rem;
-	border: white 3px solid;
-}
 
 .cancel-button{
     border:none;
@@ -102,20 +154,7 @@ body{
 	/* visibility:hidden;  */
 }
 
-.comment-input:focus~.cancel-button{
-    visibility:visible;
-}
 
-.comment-input:focus~.cancel-button{
-    visibility:visible;
-}
-
-.display-4 {
-    font-size: 3.8rem;
-    font-weight: 600;
-    line-height: 1.5;
-    letter-spacing:2;
-}
 
 .submit-button{
 	background-color:#5e8598;
@@ -138,14 +177,6 @@ textarea{
 .thumbnail-box{
 	width:5rem;
 }
-/* 
-.reply-form{
-	visibility:hidden;
-}
-
-.reply-link:hover .reply-form{
-	visibility:visible;
-} */
 
 
 .comment-media .img-fluid {

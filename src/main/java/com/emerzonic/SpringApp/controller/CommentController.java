@@ -22,15 +22,17 @@ public class CommentController {
     @PostMapping(value = "/add",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public PostComment addComment(@RequestBody PostComment comment) {
+    @ResponseBody
+    public String addComment(@RequestBody PostComment comment) {
         System.out.println(comment);
         commentService.addComment(comment);
-        return comment;
+        return "success";
     }
 
 
     //get comment to be edited
     @GetMapping("/edit/{commentId}")
+    @ResponseBody
     public PostComment edit(@PathVariable Integer commentId) {
         return commentService.getComment(commentId);
 }
@@ -39,9 +41,10 @@ public class CommentController {
     @PostMapping(value = "/update",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public PostComment update(@RequestBody PostComment comment) {
+    @ResponseBody
+    public String update(@RequestBody PostComment comment) {
         commentService.updateComment(comment.getId(), comment);
-        return comment;
+        return "success";
     }
 
     //delete comment

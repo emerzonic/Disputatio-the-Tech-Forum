@@ -27,11 +27,11 @@
 <div class="row" th:fragment="replies">
     <div class="col-xl-10 col-lg-10 col-md-10 mx-auto" th:if="${comment.replies != null}">
         <div th:each="reply : ${ comment.replies }" th:id="'collapse'+${comment.id}" class="collapse">
-            <div class="media my-2 p-2 reply-media" th:id="'reply-media'+${reply.id}">
+            <div class="media my-0 p-2 reply-media" th:id="'reply-media'+${reply.id}">
                 <img class="mr-3 rounded-circle img-fluid" th:src="@{/images/thumbnail.png}" alt="user initial image">
                 <!--<p class="initiall">E</p>-->
                 <div class="media-body">
-                    <strong><span class="mr-2 text-uppercase" th:text="${reply.author}"></span></strong> <span class="font-italic" th:text="${reply.dateString}"></span>
+                    <span class="mr-2 author" th:text="${reply.author}"></span> <span class="date-string" th:text="${reply.dateString}"></span>
                     <p th:text="${reply.text}"></p>
                     <div class="">
                         <i class="fa fa-thumbs-up toggle-like" data-author="emerson" data-th-replyId="${reply.id}" data-th-commentId="${0}" data-th-postId="${0}" data-entity="reply" aria-hidden="true"></i>

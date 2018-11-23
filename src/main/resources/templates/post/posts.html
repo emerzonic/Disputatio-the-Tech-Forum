@@ -8,7 +8,7 @@
 <div class="container px-xl-3 px-lg-3 px-md-3 py-lg-5 px-sm-0 mb-4 mb-sm-0 shadow-sm detail-container" >
 	<div class="row">
 		<div class="col-xl-10 col-lg-10 col-md-10 justify-content-center mx-auto">
-			<div><h1 class="display-3">Posts</h1></div>
+			<div><h1 class="display-4">Blog Posts</h1></div>
 			<div class="post-list-content" th:if="${posts != null}">
                 <div class="media my-2 p-4 rounded border" th:each="post : ${ posts }">
                     <div class="media-body">
@@ -16,7 +16,7 @@
                             <h3 class="mt-0 mb-1" th:text="${ post.title }"></h3>
                         </div>
                         <div class="border-bottom">
-                            <strong><span class="mr-3 mt-0 mb-1 text-uppercase" th:text="'By '+${post.author}"></span></strong> <span class="mt-0 mb-1 font-italic" th:text="${post.dateString}"></span>
+                            <span class="mr-3 mt-0 mb-1 author" th:text="'By '+${post.author}"></span> <span class="mt-0 mb-1 date-string" th:text="${post.dateString}"></span>
                         </div>
                         <div>
                             <p class="post-detail" th:text="${ post.text }"></p>

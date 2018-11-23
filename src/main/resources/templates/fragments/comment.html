@@ -23,11 +23,11 @@
 <div class="row" th:fragment="comments" >
     <div class="col-xl-10 col-lg-10 col-md-10 mx-auto" th:if="${post.comments != null}">
         <div th:each="comment : ${ post.comments }">
-            <div class="media comment-media my-2 p-2" th:id="'comment-media'+${comment.id}">
+            <div class="media comment-media my-0 p-2" th:id="'comment-media'+${comment.id}">
                 <img class="mr-3 rounded-circle img-fluid" th:src="@{/images/thumbnail.png}" alt="user initial image">
                 <!--<p class="initiall">E</p>-->
                 <div class="media-body">
-                    <strong><span class="mr-3 text-uppercase" th:text="${comment.author}"></span></strong> <span class="font-italic" th:text="${comment.dateString}"></span>
+                    <span class="mr-3 author" th:text="${comment.author}"></span> <span class="date-string" th:text="${comment.dateString}"></span>
                     <p th:text="${comment.text}"></p>
                     <div class="">
                         <i class="fa fa-thumbs-up toggle-like" data-author="emerson" data-th-commentId="${comment.id}" data-th-postId="${0}" data-th-replyId="${0}" data-entity="comment" aria-hidden="true"></i>
