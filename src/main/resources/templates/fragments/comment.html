@@ -31,9 +31,9 @@
                     <p th:text="${comment.text}"></p>
                     <div class="">
                         <i class="fa fa-thumbs-up toggle-like" data-author="emerson" data-th-commentId="${comment.id}" data-th-postId="${0}" data-th-replyId="${0}" data-entity="comment" aria-hidden="true"></i>
-                        <span th:text="${comment.likes.size()}"></span>
+                        <span  th:if="${comment.likes.size() > 0}" th:text="${comment.likes.size()}"></span>
                         <button class="btn btn-link reply-action-button"  th:data-id="${comment.id}">REPLY</button>
-                        <p data-toggle="collapse" th:data-target="'#collapse'+${comment.id}" aria-expanded="true" aria-controls="collapseOne">View <span th:text="${comment.replies.size()}"></span> Replies</p>
+                        <p data-toggle="collapse" th:data-target="'#collapse'+${comment.id}" aria-expanded="true" aria-controls="collapseOne" th:if="${comment.replies.size() > 0}">View <span th:text="${comment.replies.size()}"></span> Replies</p>
                     </div>
                 </div>
                 <div class="d-flex align-items-center">

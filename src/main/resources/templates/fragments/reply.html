@@ -35,7 +35,7 @@
                     <p th:text="${reply.text}"></p>
                     <div class="">
                         <i class="fa fa-thumbs-up toggle-like" data-author="emerson" data-th-replyId="${reply.id}" data-th-commentId="${0}" data-th-postId="${0}" data-entity="reply" aria-hidden="true"></i>
-                        <span th:text="${reply.likes.size()}"></span>
+                        <span th:if="${reply.likes.size() > 0}" th:text="${reply.likes.size()}"></span>
                     </div>
                 </div>
                 <div class="d-flex align-items-center">

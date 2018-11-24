@@ -1,7 +1,9 @@
 /*GENERAL CROSS-PAGES STYLES*/
 body{
 	background-color:#dedee2;
-	
+    font-family: 'Roboto', sans-serif;
+
+
 }
 
 .display-4 {
@@ -64,6 +66,52 @@ body{
 .date-string{
     font-style: italic;
     font-weight: 400;
+}
+
+
+.back-botton:hover{
+    color:blue;
+    text-decoration: none;
+}
+
+.post-delete-link{
+    color:red;
+}
+
+.post-delete-link:hover{
+    color:darkred;
+    text-decoration: none;
+}
+
+
+.post-edit-link{
+    color:black;
+}
+
+.post-edit-link:hover{
+    color:darkslategray;
+    text-decoration: none;
+}
+
+.post-comment-display{
+    font-size: 1.5rem;
+}
+
+.fa-thumbs-up{
+    color: #007bff;
+}
+
+.fa-thumbs-up:before {
+    content: "\f164";
+    font-size: 1.5rem;
+}
+
+.reply-action-button:hover{
+    text-decoration: none;
+}
+
+.card-body .btn-link{
+    font-size: 1.3rem;
 }
 
 
