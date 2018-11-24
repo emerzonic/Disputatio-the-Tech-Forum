@@ -34,7 +34,9 @@
                     <span class="mr-2 author" th:text="${reply.author}"></span> <span class="date-string" th:text="${reply.dateString}"></span>
                     <p th:text="${reply.text}"></p>
                     <div class="">
-                        <i class="fa fa-thumbs-up toggle-like" data-author="emerson" data-th-replyId="${reply.id}" data-th-commentId="${0}" data-th-postId="${0}" data-entity="reply" aria-hidden="true"></i>
+                        <button type="button" class="btn btn-link px-sm-1 post-like-link">
+                            <i class="fa fa-thumbs-up toggle-like" data-author="author" data-th-replyId="${reply.id}" data-th-commentId="${0}" data-th-postId="${0}" data-entity="reply" aria-hidden="true"></i>
+                        </button>
                         <span th:if="${reply.likes.size() > 0}" th:text="${reply.likes.size()}"></span>
                     </div>
                 </div>

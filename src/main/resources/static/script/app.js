@@ -302,7 +302,6 @@ $(document).on("click", ".toggle-like", function(event) {
         data = {author: author, postId:postId, commentId:commentId, replyId:replyId};
         postLike(data)
     }
-
     // // AJAX post the data to the like controller.
     function postLike(data){
     $.ajax({

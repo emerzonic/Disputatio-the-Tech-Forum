@@ -4,13 +4,13 @@
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
 <div th:replace="fragments/header-section :: header-section"></div>
-<div class="container px-lg-5 px-sm-0 rounded">
+<div class="container px-xl-3 px-lg-3 px-md-3 py-lg-5 px-sm-0 my-lg-3 shadow-sm detail-container rounded" >
     <div class="row">
         <div class="col-lg-10 justify-content-center mx-auto">
             <div class="post-list-content">
                 <!--POST DETAIL DISPLAYS BELOW-->
                 <div class="pb-0 border-bottom">
-                    <h6 class="display-4" th:text="${pageTitle}"></h6>
+                    <h6 class="display-4">Add Blog Post</h6>
                 </div>
                 <div class="new-post-content mt-2">
                     <form action="#" th:action="@{/post/add}" th:object="${post}" method="post">

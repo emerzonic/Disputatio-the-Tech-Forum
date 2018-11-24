@@ -18,18 +18,18 @@ public class LikeController {
     }
 
 
-    //add or remove like mapping
+    //add or remove like
     @PostMapping(value = "/toggle-like",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Like addReply(@RequestBody Like like) {
+    public String addReply(@RequestBody Like like) {
         try {
             likeService.toggleLike(like);
         }catch (Exception e){
             e.printStackTrace();
         }
-        return new Like();
+        return "success";
     }
 
 }

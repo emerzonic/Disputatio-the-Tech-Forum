@@ -26,14 +26,15 @@
                         </a>
                         <button type="button" class="btn btn-link px-sm-1 post-like-link">
                             <span class="ml-3 mr-1 like-button px-sm-1">
-                                <i class="fa fa-thumbs-up toggle-like" data-author="emerson" data-th-postId="${post.id}" data-th-commentId="${0}" data-th-replyId="${0}" data-entity="post"  aria-hidden="true"></i>
+                                <i class="fa fa-thumbs-up toggle-like" data-author="author" data-th-postId="${post.id}" data-th-commentId="${0}" data-th-replyId="${0}" data-entity="post"  aria-hidden="true"></i>
                             </span>
                             <span class="" th:if="${post.likes.size() > 0}" th:text="${post.likes.size()}"></span>
                         </button>
-                        <span class="ml-3 mr-1 post-comment-display" th:if="${post.comments.size() > 0}">
-                                <i class="fa fa-comments" aria-hidden="true" th:text="${post.comments.size()}"> </i>
-                                 comments
-                        </span>
+                        <p class="ml-3 mr-1 post-comment-display d-inline" th:if="${post.comments.size() > 0}">
+                                <i class="fa fa-comments" aria-hidden="true"> </i> <span th:text="${post.comments.size()}"></span>
+                                <span th:if="${post.comments.size() == 1}">Comment</span>
+                                <span th:if="${post.comments.size() > 1}">Comments</span>
+                        </p>
                     </div>
                 </div>
         </div>
