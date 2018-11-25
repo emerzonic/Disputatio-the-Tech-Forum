@@ -20,12 +20,12 @@ public class LikeServiceImpli implements LikeService {
     private LikeRepository likeRepository;
     private ReplyRepository replyRepository;
 
-    public LikeServiceImpli(UserService userService, CommentRepository commentRepository, PostRepository postRepository, LikeRepository likeRepository, ReplyRepository replyRepository) {
+    public LikeServiceImpli(CommentRepository commentRepository, PostRepository postRepository, UserService userService, LikeRepository likeRepository, ReplyRepository replyRepository) {
         this.commentRepository = commentRepository;
         this.postRepository = postRepository;
+        this.userService = userService;
         this.likeRepository = likeRepository;
         this.replyRepository = replyRepository;
-        this.userService = userService;
     }
 
     @Override

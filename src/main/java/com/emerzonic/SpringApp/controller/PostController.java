@@ -4,6 +4,8 @@ package com.emerzonic.SpringApp.controller;
 import com.emerzonic.SpringApp.entity.Post;
 import com.emerzonic.SpringApp.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -62,7 +64,10 @@ public class PostController {
     @GetMapping("/details/{postId}")
     public String getPost(@PathVariable Integer postId, Model model) {
         Post post = postService.getPost(postId);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
         model.addAttribute("post", post);
+        model.addAttribute("username", username);
         return "post/detail";
     }
 

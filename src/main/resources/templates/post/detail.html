@@ -8,6 +8,9 @@
     <div class="row">
         <div class="col-lg-10 justify-content-center mx-auto">
             <div><h6 class="display-4">Post Detail</h6></div>
+            <p class="nav-link" th:text="${username}">
+                <i class="fas fa-user" ></i>
+            </p>
                 <!--POST DETAIL DISPLAYS BELOW-->
                 <div class="card border-info mb-3 px-0 border-0">
                     <div class="card-header px-0 pb-0" th:text="${post.title}"></div>

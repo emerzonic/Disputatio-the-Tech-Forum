@@ -16,17 +16,18 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    public SecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery("select username as principal,password as credentials, true from user where username=?")
                 .authoritiesByUsernameQuery("select username as principal,password as credentials, true from user where username=?")
                 .passwordEncoder(passwordEncoder());
-
     }
 
     protected void configure(HttpSecurity http ) throws Exception{
@@ -41,7 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .logout().logoutSuccessUrl("/")
                     .permitAll();
-
     }
 
     @Bean
