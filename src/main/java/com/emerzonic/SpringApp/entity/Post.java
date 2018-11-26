@@ -89,8 +89,8 @@ public class Post {
 	}
 
     public String getDateString() {
-        GenerateDateString generateDateString = new GenerateDateString();
-        return generateDateString.getDateString(dateString, createdOn);
+        GenerateDateString date = new GenerateDateString();
+        return date.getDateString(dateString, createdOn);
     }
 
 	public void setDateString(String dateString) {
