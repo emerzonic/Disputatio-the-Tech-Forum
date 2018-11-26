@@ -1,13 +1,11 @@
 package com.emerzonic.SpringApp.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 
 @Entity
@@ -26,10 +24,13 @@ public class User {
 	@Column(name="password")
 	private String password;
 
-//
-//	@ManyToMany(cascade=CascadeType.ALL)
-//	@JoinColumn(name="user_role")
-//	private List<Role> roles;
+
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="user_roles",joinColumns = {
+			@JoinColumn(name="user_username", referencedColumnName = "username")},
+			inverseJoinColumns = {
+				@JoinColumn(name="role_name", referencedColumnName = "name")})
+	private List<Role> roles;
 
 
 	public User() {}
