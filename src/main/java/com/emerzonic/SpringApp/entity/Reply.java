@@ -36,9 +36,6 @@ import java.util.Map;
 		@MapKey(name = "author")
 		private Map<String, Like> likes;
 
-        @Transient
-        private HandleLike handleLike;
-
 
 		public Reply() {}
 
@@ -105,7 +102,7 @@ import java.util.Map;
 		}
 
 		public boolean toggleLike(Like newLike) {
-            handleLike = new HandleLike();
+            HandleLike handleLike = new HandleLike();
             return handleLike.toggleLike(likes, newLike);
 		}
 

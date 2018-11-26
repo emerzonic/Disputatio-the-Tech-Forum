@@ -45,9 +45,6 @@ public class Post {
 	@MapKey(name = "author")
 	private Map<String, Like> likes;
 
-    @Transient
-    private HandleLike handleLike;
-
 	public Post() {
 
 	}
@@ -133,7 +130,7 @@ public class Post {
 
 	
 	public boolean toggleLike(Like newLike) {
-        handleLike = new HandleLike();
+        HandleLike handleLike = new HandleLike();
 		return handleLike.toggleLike(likes, newLike);
 	}
 
