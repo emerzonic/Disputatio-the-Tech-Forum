@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -56,6 +57,13 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+    public void addRole(Role newRole) {
+        if (roles == null) {
+            roles = new ArrayList<>();
+        }
+        roles.add(newRole);
+    }
 
 
 	@Override

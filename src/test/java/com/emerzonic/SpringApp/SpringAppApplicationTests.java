@@ -17,7 +17,7 @@ public class SpringAppApplicationTests {
 
 	@Test
 	public void contextLoads() {
-//		User testUser = new User("testusername","testpassword");
+//		User testUser = new User("emerson","pass");
 //		userService.createUser(testUser);
 	}
 

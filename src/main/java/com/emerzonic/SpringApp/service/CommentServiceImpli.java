@@ -33,7 +33,7 @@ public class CommentServiceImpli implements CommentService {
         Post post = postRepository.findById(comment.getPostId()).orElse(null);
         comment.setCreatedOn();
         comment.setAuthor(author);
-        post.add(comment);
+        post.addComment(comment);
         commentRepository.save(comment);
 	}
 

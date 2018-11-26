@@ -123,7 +123,7 @@ public class Post {
 		this.likes = likes;
 	}
 
-	public void add(PostComment newComment) {
+	public void addComment(PostComment newComment) {
 		if (comments == null) {
 			comments = new ArrayList<>();
 		}

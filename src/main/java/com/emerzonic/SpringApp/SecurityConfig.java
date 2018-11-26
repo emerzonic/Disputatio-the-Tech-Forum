@@ -26,8 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery("select username as principal,password as credentials, true from user where username=?")
-                .authoritiesByUsernameQuery("select username as principal,password as credentials, true from user where username=?")
-                .passwordEncoder(passwordEncoder());
+                .authoritiesByUsernameQuery("select user_username as principal,role_name as role from user_roles where user_username=?")
+                .passwordEncoder(passwordEncoder()).rolePrefix("ROLE_");
     }
 
     protected void configure(HttpSecurity http ) throws Exception{
@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    protected PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
 
     }

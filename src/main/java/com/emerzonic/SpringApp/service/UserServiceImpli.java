@@ -1,6 +1,7 @@
 package com.emerzonic.SpringApp.service;
 
 import com.emerzonic.SpringApp.DAO.UserRepository;
+import com.emerzonic.SpringApp.entity.Role;
 import com.emerzonic.SpringApp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -25,8 +26,9 @@ public class UserServiceImpli implements UserService {
 	public void createUser(User user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
+		Role userRole = new Role("USER");
+        user.addRole(userRole);
 		userRepository.save(user);
-
 	}
 
     @Override
