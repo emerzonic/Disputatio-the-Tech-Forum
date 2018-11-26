@@ -70,12 +70,11 @@ public class PostServiceImpli implements PostService {
 
 	}
 
-
-	@Override
 	@Transactional
-	public List<Post> searchPosts(String searchTerm) {
-		return null;
+	public List<Post> searchPost(String searchTerm) {
+		return postRepository.findPostsByTitleContains(searchTerm);
 	}
+
 	
 	
 }

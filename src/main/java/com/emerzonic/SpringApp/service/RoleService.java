@@ -7,10 +7,4 @@ public interface RoleService {
 
 	void createRole(Role role);
 
-//	User findByUserName(String username);
-//
-//	boolean checkIfUserExist(String username);
-//
-//	String getCurrentUserUsername();
-
 }

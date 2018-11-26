@@ -1,9 +1,10 @@
 package com.emerzonic.SpringApp.entity;
 
+import com.emerzonic.SpringApp.util.GenerateDateString;
+import com.emerzonic.SpringApp.util.HandleLike;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.Map;
 
 	@Entity
@@ -34,6 +35,10 @@ import java.util.Map;
 		@JoinColumn(name="reply_id")
 		@MapKey(name = "author")
 		private Map<String, Like> likes;
+
+        @Transient
+        private HandleLike handleLike;
+
 
 		public Reply() {}
 
@@ -66,12 +71,10 @@ import java.util.Map;
 		}
 
 
-		public String getDateString() {
-			if (dateString == null) {
-				dateString = DateTimeFormatter.ofPattern("E, MMM. dd yyyy").format(createdOn.toLocalDateTime());
-			}
-			return dateString;
-		}
+        public String getDateString() {
+            GenerateDateString generateDateString = new GenerateDateString();
+            return generateDateString.getDateString(dateString, createdOn);
+        }
 
 		public void setDateString(String dateString) {
 			this.dateString = dateString;
@@ -102,23 +105,9 @@ import java.util.Map;
 		}
 
 		public boolean toggleLike(Like newLike) {
-			boolean feedback = true;
-			if (likes == null) {
-				likes = new HashMap<>();
-			}
-			String authorkey = newLike.getAuthor();
-			Like like = likes.get(authorkey);
-			if (like == null) {
-				likes.put(authorkey, newLike);
-				System.out.println("like added");
-				feedback = false;
-
-			} else {
-				likes.remove(authorkey);
-				System.out.println("like removed");
-			}
-			return feedback;
-			}
+            handleLike = new HandleLike();
+            return handleLike.toggleLike(likes, newLike);
+		}
 
 
 		@Override

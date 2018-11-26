@@ -65,8 +65,7 @@ public class User {
         roles.add(newRole);
     }
 
-
-	@Override
+    @Override
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + "]";
 	}	
