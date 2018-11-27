@@ -2,8 +2,6 @@
 body{
 	background-color:#dedee2;
     font-family: 'Roboto', sans-serif;
-
-
 }
 
 .display-4 {
@@ -41,8 +39,6 @@ body{
 	background-repeat:no-repeat;
 	background-size:cover;
 	color:#FFFF;
-/* 	margin-top:200px;
- */	
 }
 
 /*BLOG POSTS STYLES*/
@@ -115,10 +111,28 @@ body{
     font-size: 1.3rem;
 }
 
+.btn-primary{
+    background:#5e8598;
+    border: #5e8598;
+    color: #ffffff;
+    outline: 0;
+    box-shadow: none;
+}
 
+.btn-primary:hover{
+    border: #5e8598;
+}
+
+.btn-primary:visited{
+    border: #5e8598;
+}
+
+.btn-primary:active, .btn-primary:focus {
+    outline: 0;
+    border: none;
+}
 
 /*MAIN FOOTER STYLES*/
-
 .footer{
 	background:#5e8598;
 	color:black;
@@ -196,7 +210,6 @@ body{
 	background:white;
 	margin-right:1rem;
 	color:black;
-	/* visibility:hidden;  */
 }
 
 

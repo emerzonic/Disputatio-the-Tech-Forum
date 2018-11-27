@@ -52,8 +52,9 @@
                     <i class="fa fa-ellipsis-v pl-4 pt-5" data-toggle="dropdown" aria-hidden="true"></i>
                     <div class="dropdown-menu border-0 p-0 bg-transparent">
                         <ul class="list-group w-75">
-                            <li class="list-group-item list-group-item-action commentEdit" data-th-commentId="${comment.id}" ><i class="fas fa-edit"></i> Edit</li>
-                            <li class="list-group-item list-group-item-action commentDelete"  data-th-commentId="${comment.id}" ><i class="fas fa-trash-alt"></i> Delete</li>
+                            <li class="list-group-item list-group-item-action commentEdit" data-th-commentId="${comment.id}" th:if="${#authentication.name}==${comment.author}"> <i class="fas fa-edit"></i> Edit</li>
+                            <li class="list-group-item list-group-item-action commentDelete"  data-th-commentId="${comment.id}" th:if="${#authentication.name}==${comment.author}"> <i class="fas fa-trash-alt"></i> Delete</li>
+                            <li class="list-group-item list-group-item-action" th:if="${#authentication.name}!=${comment.author}"> Report</li>
                         </ul>
                     </div>
                 </div>

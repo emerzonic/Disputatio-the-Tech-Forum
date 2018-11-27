@@ -5,6 +5,8 @@ import com.emerzonic.SpringApp.util.HandleLike;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +22,13 @@ public class Post {
 	@Column(name = "id")
 	private int id;
 
+	@NotNull
+	@NotEmpty
 	@Column(name = "title")
 	private String title;
 
+	@NotNull
+	@NotEmpty
 	@Column(name = "text")
 	private String text;
 

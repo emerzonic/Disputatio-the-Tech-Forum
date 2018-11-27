@@ -6,8 +6,10 @@ import com.emerzonic.SpringApp.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -50,7 +52,10 @@ public class PostController {
 
     //add new post
     @PostMapping("/add")
-    public String addPost(@ModelAttribute(value="post") Post post) {
+    public String addPost(@ModelAttribute(value="post") @Valid Post post, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()){
+            return "post/form";
+        }
         postService.addPost(post);
         return "redirect:/post/list";
     }
@@ -76,7 +81,10 @@ public class PostController {
 
     //update post
     @PostMapping("/update/{postId}")
-    public String updatePost(@ModelAttribute(value="post") Post post, @PathVariable Integer postId, Model model) {
+    public String updatePost(@ModelAttribute(value="post") @Valid Post post,BindingResult bindingResult, @PathVariable Integer postId, Model model) {
+        if(bindingResult.hasErrors()){
+            return "post/edit";
+        }
         postService.updatePost(post, postId);
         return "redirect:/post/details/"+postId;
     }
