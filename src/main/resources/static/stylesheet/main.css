@@ -125,17 +125,18 @@ body{
 
 .btn-primary:visited{
     border: #5e8598;
+    box-shadow: none;
 }
 
 .btn-primary:active, .btn-primary:focus {
     outline: 0;
     border: none;
+    box-shadow: none;
 }
 
 /*MAIN FOOTER STYLES*/
 .footer{
 	background:#5e8598;
-	color:black;
 	height:auto;
 	}
 
@@ -277,6 +278,14 @@ a:visited {
 a:hover   {
     /* Applies to links under the pointer */
     text-decoration:  none;
+}
+
+.text-justify{
+    color:#2d4c5a;
+}
+
+.heading-text{
+    color: #ffffff;
 }
 
 
