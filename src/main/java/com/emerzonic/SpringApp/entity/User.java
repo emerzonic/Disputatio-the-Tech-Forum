@@ -20,7 +20,6 @@ public class User {
 	private String username;
 
 
-	@NotNull
     @Size(min = 4)
 	@Column(name="password")
 	private String password;

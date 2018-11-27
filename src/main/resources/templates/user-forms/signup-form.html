@@ -25,6 +25,9 @@
                         <input type="password" name="password" class="form-control" th:field="*{password}" id="exampleInputPassword1" placeholder="Password">
                         <div class="text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                     </div>
+                    <a href="/post/list">
+                        <button type="button" class="btn btn-lg cancel-button pl-0 mr-0">Cancel</button>
+                    </a>
                     <button type="submit" class="btn btn-primary mb-3">Submit</button>
                 </form>
             </div>

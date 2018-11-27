@@ -213,8 +213,6 @@ body{
 	color:black;
 }
 
-
-
 .submit-button{
 	background-color:#5e8598;
 	border-color:#5e8598;
@@ -286,6 +284,10 @@ a:hover   {
 
 .heading-text{
     color: #ffffff;
+}
+
+.spacer{
+    height: 7rem;
 }
 
 
