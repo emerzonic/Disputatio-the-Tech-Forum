@@ -22,6 +22,7 @@ body{
     font-size: 1rem;
     border: white 3px solid;
     background: #033542;
+    font-weight: bold;
 }
 
 
@@ -113,10 +114,6 @@ body{
 .card-body .btn-link{
     font-size: 1.3rem;
 }
-
-
-
-
 
 
 

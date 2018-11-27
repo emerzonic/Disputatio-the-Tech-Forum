@@ -37,7 +37,7 @@
                         <button type="button" class="btn btn-link px-sm-1 post-like-link"  sec:authorize="isAuthenticated()">
                             <i class="fa fa-thumbs-up toggle-like" data-author="author" data-th-replyId="${reply.id}" data-th-commentId="${0}" data-th-postId="${0}" data-entity="reply" aria-hidden="true"></i>
                         </button>
-                        <span class="" th:if="${post.likes.size() > 0}"  sec:authorize="!isAuthenticated()"> Like</span>
+                        <span class="" th:if="${post.likes.size() > 0}"  sec:authorize="!isAuthenticated()"> <i class="fa fa-thumbs-up text-secondary"></i></span>
                         <span th:if="${reply.likes.size() > 0}" th:text="${reply.likes.size()}"></span>
                     </div>
                 </div>

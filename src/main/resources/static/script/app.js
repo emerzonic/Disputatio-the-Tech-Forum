@@ -11,15 +11,19 @@ $(function() {
     $(document).scroll(function() {
         var $nav = $("#mainNav");
         if ($(window).scrollTop() > $nav.height()) {
-            $nav.addClass("bg-dark").removeClass("mt-5");
+            $nav.addClass("bg-dark").removeClass("mt-lg-5","mt-xl-5","mt-md-5");
 
         } else {
-            $nav.removeClass("bg-dark").addClass("mt-5");
+            $nav.removeClass("bg-dark").addClass("mt-lg-5","mt-xl-5","mt-md-5");
         }
     })
 });
 
+$( ".navbar-toggler" ).click(function() {
+    $("#mainNav").addClass("bg-dark");
+});
 
+navbar-toggler
 //Display cancel and submit buttons when comment input is focused
 $( "#commentInput" ).focus(function() {
     $("#commentCancelButton, #commentSubmitButton").removeClass("d-none");

@@ -34,6 +34,7 @@
                         <button type="button" class="btn btn-link px-sm-1 post-like-link"  sec:authorize="isAuthenticated()">
                             <i class="fa fa-thumbs-up toggle-like" data-author="author" data-th-commentId="${comment.id}" data-th-postId="${0}" data-th-replyId="${0}" data-entity="comment" aria-hidden="true"></i>
                         </button>
+                        <span  th:if="${comment.likes.size() > 0}"  sec:authorize="!isAuthenticated()"> <i class="fa fa-thumbs-up"></i></span>
                         <span  th:if="${comment.likes.size() > 0}" th:text="${comment.likes.size()}"></span>
                         <button class="btn btn-link reply-action-button"  th:data-id="${comment.id}" sec:authorize="isAuthenticated()"> REPLY</button>
                         <p data-toggle="collapse" th:data-target="'#collapse'+${comment.id}" aria-expanded="true" aria-controls="collapseOne" th:if="${comment.replies.size() > 0}">
