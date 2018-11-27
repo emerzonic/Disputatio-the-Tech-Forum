@@ -74,16 +74,16 @@ public class Post {
 		return title;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setTitle(String value) {
+		this.title = value.trim();
 	}
 
 	public String getText() {
 		return text;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setText(String value) {
+		this.text = value.trim();
 	}
 
 	public Timestamp getCreatedOn() {
