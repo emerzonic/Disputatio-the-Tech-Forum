@@ -2,16 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <div th:replace="fragments/head :: head"></div>
 <body>
-    <div class="header-image card bg-dark text-white text-center">
-        <img class="card-img img-fluid" th:src="@{/images/header_background.jpg}" alt="Card image"/>
-        <div class="card-img-overlay d-flex flex-column justify-content-center my-sm-5">
-            <h1 class="display-3">The Discussion Board</h1>
-            <p class="lead">A place where everyone can express and exchange their views.</p>
-            <hr class="my-1"/>
-            <a class="btn btn-primary btn-lg mx-auto my-sm-5" href="/post/list" role="button">Join The Conversation</a>
-        </div>
+<div class="card text-center">
+    <div class="card-body home-card">
+        <h5 class="card-title display-4">The Discussion Board</h5>
+        <p class="card-text">A place where everyone can express and exchange their views.</p>
+        <a href="/post/list" class="btn btn-primary">Join The Conversation</a>
     </div>
-<div th:replace="fragments/footer :: footer-home"></div>
+    <div class="card-footer p-0 m-0">
+        <div th:replace="fragments/footer :: footer-home"></div>
+    </div>
+</div>
 <div th:replace="fragments/bottom-scripts :: bottom-scripts"></div>
 </body>
 </html>

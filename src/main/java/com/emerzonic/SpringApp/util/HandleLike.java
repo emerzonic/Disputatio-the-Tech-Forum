@@ -5,6 +5,7 @@ import com.emerzonic.SpringApp.entity.Like;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class HandleLike {
 
     public boolean toggleLike(Map likes, Like newLike) {

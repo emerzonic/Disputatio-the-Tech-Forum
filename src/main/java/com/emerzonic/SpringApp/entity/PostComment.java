@@ -76,8 +76,8 @@ public class PostComment {
 
 
 	public String getDateString() {
-	    GenerateDateString date = new GenerateDateString();
-		return date.getDateString(dateString, createdOn);
+	    GenerateDateString generateDateString = new GenerateDateString();
+		return generateDateString.getDateString(dateString, createdOn);
 	}
 
 	public void setDateString(String dateString) {
