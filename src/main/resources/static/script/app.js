@@ -19,11 +19,13 @@ $(function() {
     })
 });
 
+
+//change the navbar background on sm when it is toggled
 $( ".navbar-toggler" ).click(function() {
     $("#mainNav").addClass("bg-dark");
 });
 
-navbar-toggler
+
 //Display cancel and submit buttons when comment input is focused
 $( "#commentInput" ).focus(function() {
     $("#commentCancelButton, #commentSubmitButton").removeClass("d-none");

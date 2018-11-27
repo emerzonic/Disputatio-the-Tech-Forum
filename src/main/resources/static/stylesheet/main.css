@@ -225,7 +225,7 @@ textarea{
 
 
 .comment-media .img-fluid {
-	max-width: 6%;
+	max-width: 5%;
     min-width: 2.5rem;
 }
 
@@ -247,4 +247,23 @@ textarea{
 .media:hover .fa-ellipsis-v{
     visibility:visible;
 }
+
+.login-info{
+    font-size: 0.8rem;
+    color:#0808a9;
+}
+
+a:link    {
+    /* Applies to all unvisited links */
+    text-decoration:  none;
+}
+a:visited {
+    /* Applies to all visited links */
+    text-decoration:  none;
+}
+a:hover   {
+    /* Applies to links under the pointer */
+    text-decoration:  none;
+}
+
 
