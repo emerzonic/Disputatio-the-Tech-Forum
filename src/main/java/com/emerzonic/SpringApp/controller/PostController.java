@@ -38,6 +38,7 @@ public class PostController {
     public String searchPosts(@RequestParam(defaultValue = "") String searchTerm, Model model)  {
         List<Post> posts = postService.searchPost(searchTerm);
         model.addAttribute("posts", posts);
+        System.out.println(posts);
         return "post/posts";
     }
 

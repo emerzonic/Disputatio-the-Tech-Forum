@@ -108,6 +108,12 @@ body{
     font-size: 1.5rem;
 }
 
+.fa-info-circle{
+    font-size: 2.5rem;
+    color: #007bff;
+}
+
+
 
 .reply-action-button:hover{
     text-decoration: none;
