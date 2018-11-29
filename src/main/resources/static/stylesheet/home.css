@@ -9,7 +9,7 @@ body{
 }
 
 .home-card{
-    background-image:url("../images/header_background.jpg");
+    background-image:url("../images/background2.jpg");
     background-repeat:no-repeat;
     background-size:cover;
     color:#FFFF;
@@ -29,8 +29,8 @@ body{
 
 .home-footer .list-group-item.active{
     color: #ffffff;
-    background-color:#5e8598;
-    border-color:#5e8598;
+    background-color:#03283f;
+    border-color:#03283f;
     margin-bottom: 1rem;
     font-weight: bold;
 }

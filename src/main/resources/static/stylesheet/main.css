@@ -14,6 +14,11 @@ body{
 /*NAVBAR STYLES*/
 .navbar.bg-dark{
 	transition:all 1500ms;
+    background-color:#03283f;
+}
+
+.bg-dark{
+    background-color:#03283f!important;
 }
 
 .navbar-brand{
@@ -35,7 +40,8 @@ body{
 
 /*GENERAL HEADER STYLES*/
 .top-header{
-	background-image:url("../images/header_background.jpg");
+	/*background-image:url("../images/header_background.jpg");*/
+	background-image:url("../images/background2.jpg");
 	background-repeat:no-repeat;
 	background-size:cover;
 	color:#FFFF;
@@ -123,16 +129,31 @@ body{
     font-size: 1.3rem;
 }
 
-.btn-primary{
-    background:#5e8598;
-    border: #5e8598;
+.btn-primary,.btn-success{
+    background:#03283f;
+    border: #03283f;
     color: #ffffff;
     outline: 0;
     box-shadow: none;
+    outline: none;
+}
+
+.btn-success:hover{
+    background:#05456d;
+}
+
+.btn-success:visited{
+    background:#03283f;
+    border: #03283f;
+}
+
+.btn-success:active{
+    background:#03283f;
+    border: #03283f;
 }
 
 .btn-primary:hover{
-    border: #5e8598;
+    border: #03283f;
 }
 
 .btn-primary:visited{
@@ -148,7 +169,7 @@ body{
 
 /*MAIN FOOTER STYLES*/
 .footer{
-	background:#5e8598;
+	background:#03283f;
 	height:auto;
 	}
 
@@ -160,7 +181,7 @@ body{
 	}
 
 .copy-box{
-    background: #5e8598;
+    background: #03283f;
 }
 
 
@@ -226,8 +247,8 @@ body{
 }
 
 .submit-button{
-	background-color:#5e8598;
-	border-color:#5e8598;
+	background-color:#03283f;
+	border-color:#03283f;
 	color:white;
     transition: all 1s;
 }
