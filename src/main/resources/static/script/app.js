@@ -3,7 +3,8 @@
 //GENERAL PAGE OPERATIONS
 //==========================================================
 //add auto height to input fields
-autosize(document).getElementsByClassName("autosize-input");
+autosize(document.getElementsByClassName("autosize-input"));
+
 
 
 //control navbar background color on page scroll
@@ -12,7 +13,6 @@ $(function() {
         var $nav = $("#mainNav");
         if ($(window).scrollTop() > $nav.height()) {
             $nav.addClass("bg-dark").removeClass("mt-lg-5","mt-xl-5","mt-md-5");
-
         } else {
             $nav.removeClass("bg-dark").addClass("mt-lg-5","mt-xl-5","mt-md-5");
         }
@@ -29,25 +29,37 @@ $( ".navbar-toggler" ).click(function() {
 //Display cancel and submit buttons when comment input is focused
 $( "#commentInput" ).focus(function() {
     $("#commentCancelButton, #commentSubmitButton").removeClass("d-none");
+    $("#newCommentError, #editCommentError").text("");
+});
+
+
+//Display cancel and submit buttons when comment input is focused
+$( "#commentEdittInput" ).focus(function() {
+    console.log("before")
+    $("#editCommentError").text("");
+    console.log("after")
 });
 
 
 //clear the comment input when comment is canceled
 $("#commentCancelButton").click(function() {
 	$("#commentInput").val("");
+	$("#commentCancelButton, #commentSubmitButton").toggleClass("d-none");
 });
 
 
 //Display reply form when reply button is clicked
 $( ".reply-action-button" ).click(function(event) {
     var id = event.target.getAttribute("data-id");
+    $("#editReplyErrorError"+id).text("");
     $("#replyForm"+id).removeClass("d-none");
 });
 
 //clear the reply input when reply is canceled
 $(".reply-cancel-button").click(function(event) {
     var id = event.target.getAttribute("data-id");
-    $("#replyInput"+id).val("");
+    $("#editReplyErrorError"+id).text("");
+    $("#replyForm"+id).toggleClass("d-none");
 });
 
 
@@ -70,12 +82,18 @@ $("#commentForm").submit(function(event) {
     event.preventDefault();
     // retrieve data from form
     var $commentInput = $("#commentInput");
-    var text = $commentInput.val();
-    var  postId = $("#postId").val();
+    var text = $commentInput.val().trim();
+    var postId = $("#postId").val();
+    var errorField = $("#newCommentError");
+
+    if(text === ""){
+        return errorField.text("Comment field cannot be empty!");
+    }
 
     // AJAX post the data to the comment controller.
     var url = "/comment/add";
     var data = {text:text, postId:postId};
+    console.log(data);
     $.ajax({
         headers: {
             'Accept': 'application/json',
@@ -101,18 +119,20 @@ $(document).on("click", ".commentEdit", function(event) {
     var id = event.target.getAttribute("commentId");
     $.ajax({
         method: "GET",
-        url: "/comment/edit/"+id
-    })
-        .done(function( comment ) {
+        url: "/comment/edit/"+id,
+        "success":function( comment ) {
+            console.log(comment);
             if(comment){
-              var $commentDiv = $("#comment-media"+comment.id);
+                var $commentDiv = $("#comment-media"+comment.id);
                 var $commentTextarea = $("#comment-textarea"+comment.id);
                 var $commentFormDiv = $("#comment-form"+comment.id);
-              $commentDiv.toggleClass("d-none");
-              $commentTextarea.val(comment.text);
-              $commentFormDiv.toggleClass("d-none");
+                $commentDiv.toggleClass("d-none");
+                $commentTextarea.val(comment.text);
+                $commentFormDiv.toggleClass("d-none");
             }
-        });
+        }
+    });
+
 });
 
 
@@ -126,6 +146,7 @@ $(document).on("click", ".cancel-edit", function(event) {
     $commentDiv.toggleClass("d-none");
     $commentFormDiv.toggleClass("d-none");
     $commentTextarea.val("");
+
 });
 
 
@@ -134,8 +155,12 @@ $(document).on("click", ".submit-comment", function(event) {
     event.preventDefault();
     var id = event.target.getAttribute("commentId");
     var $commentTextarea = $("#comment-textarea"+id);
-    var text = $commentTextarea.val();
+    var text = $commentTextarea.val().trim();
+    var errorField = $("#editCommentError"+id);
 
+    if(text === ""){
+        return errorField.text("Comment field cannot be empty!");
+    }
     // AJAX post the updated comment to the comment controller.
     var url = "/comment/update";
     var data = { id:id,text:text};
@@ -184,8 +209,13 @@ $(document).on("click", ".reply-submit-button", function(event) {
     var id = event.target.getAttribute("data-id");
     // retrieve data from reply input
     var $replyInput = $("#replyInput"+id);
-    var text = $replyInput.val();
+    var text = $replyInput.val().trim();
     var data = {text:text, commentId:id};
+    var errorField = $("#newReplyError"+id);
+
+    if(text === ""){
+        return errorField.text("Reply field cannot be empty!");
+    }
 
     // AJAX post the data to the reply controller.
     $.ajax({
@@ -246,7 +276,12 @@ $(document).on("click", ".submit-reply", function(event) {
     event.preventDefault();
     var id = event.target.getAttribute("replyId");
     var $replyTextarea = $("#reply-textarea"+id);
-    var text =  $replyTextarea.val();
+    var text =  $replyTextarea.val().trim();
+    var errorField = $("#editReplyError"+id);
+
+    if(text === ""){
+        return errorField.text("Reply field cannot be empty!");
+    }
 
     // AJAX post the updated reply to the reply controller.
     var url = "/reply/update";
@@ -328,8 +363,6 @@ $(document).on("click", ".toggle-like", function(event) {
         reloadPageLocation(2000);
     }
 });
-
-
 
 
 

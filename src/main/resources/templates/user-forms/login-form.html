@@ -14,7 +14,7 @@
             <div class="alert alert-success" role="alert" th:if="${param.logout != null}">
                 <i class="fas fa-info-circle text-success"></i> You are logged out!
             </div>
-            <div><h6 class="display-4">Login</h6></div>
+            <div><h6 class="display-4 page-title">Login</h6></div>
             <div class="post-list-content">
                 <!--USER FORM DISPLAYS BELOW-->
                 <form action="#" th:action="@{/user/login}" method="post">
@@ -26,12 +26,13 @@
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
-                    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                    <button type="submit" class="btn btn-primary mb-3 submit-button">Submit</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<div class="user-form-spacer"></div>
 <div th:replace="fragments/footer :: footer-main"></div>
 <div th:replace="fragments/bottom-scripts :: bottom-scripts"></div>
 </body>

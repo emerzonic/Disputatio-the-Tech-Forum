@@ -10,7 +10,7 @@
             <div class="post-list-content">
                 <!--POST DETAIL DISPLAYS BELOW-->
                 <div class="pb-0 border-bottom">
-                    <h6 class="display-4">Add Blog Post</h6>
+                    <h6 class="display-4 page-title">Add Blog Post</h6>
                 </div>
                 <div class="new-post-content mt-2">
                     <form action="#" th:action="@{/post/add}" th:object="${post}" method="post">
@@ -41,7 +41,7 @@
         </div>
     </div>
 </div>
-<div class="spacer"></div>
+<div class="user-form-spacer"></div>
 <div th:replace="fragments/footer :: footer-main"></div>
 <div th:replace="fragments/bottom-scripts :: bottom-scripts"></div>
 </body>

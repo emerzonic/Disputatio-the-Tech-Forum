@@ -3,7 +3,6 @@ package com.emerzonic.SpringApp.service;
 import com.emerzonic.SpringApp.DAO.PostRepository;
 import com.emerzonic.SpringApp.entity.Post;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,14 +14,14 @@ import java.util.List;
 @Service
 public class PostServiceImpli implements PostService {
 	private PostRepository postRepository;
-    private UserService userService;
+	private UserService userService;
 
 
 	@Autowired
-    public PostServiceImpli(PostRepository postRepository, UserService userService) {
-        this.postRepository = postRepository;
-        this.userService = userService;
-    }
+	public PostServiceImpli(PostRepository postRepository, UserService userService) {
+		this.postRepository = postRepository;
+		this.userService = userService;
+	}
 
 
 
@@ -30,43 +29,40 @@ public class PostServiceImpli implements PostService {
 	@Override
 	@Transactional
 	public List<Post> getAllPosts() {
-        Sort sort = new Sort(new Sort.Order(Sort.Direction.DESC, "id"));
-		return postRepository.findAll(sort);
+		return postRepository.findAll();
 	}
 	
 	
 	@Override
 	@Transactional
 	public void addPost(Post post) {
-        String author = userService.getCurrentUserUsername();
-	    post.setAuthor(author);
-        post.setCreatedOn();
-	    postRepository.save(post);
+		String author = userService.getCurrentUserUsername();
+		post.setAuthor(author);
+		post.setCreatedOn();
+		postRepository.save(post);
 
 	}
 
 	@Override
 	@Transactional
 	public Post getPost(Integer postId) {
-	    Post post = postRepository.findById(postId).orElse(null);
-	    post.setComments(post.getComments());
-	    return post;
+		return postRepository.getById(postId);
 	}
 
 
 	@Override
 	@Transactional
 	public void updatePost(Post post, Integer postId) {
-        Post updatedPost = postRepository.findById(postId).orElse(null);
-        updatedPost.setText(post.getText());
-        updatedPost.setTitle(post.getTitle());
+		Post updatedPost = postRepository.findById(postId).orElse(null);
+		updatedPost.setText(post.getText());
+		updatedPost.setTitle(post.getTitle());
 	}
 
 
 	@Override
 	@Transactional
 	public void deletePost(int postId) {
-	    postRepository.deleteById(postId);
+		postRepository.deleteById(postId);
 
 	}
 

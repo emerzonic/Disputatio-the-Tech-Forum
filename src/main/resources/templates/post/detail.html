@@ -9,7 +9,9 @@
 <div class="container px-xl-3 px-lg-3 px-md-3 py-lg-5 px-sm-0 shadow-sm detail-container" >
     <div class="row">
         <div class="col-lg-10 justify-content-center mx-auto">
-            <div><h6 class="display-4 m-0">Post Detail</h6></div>
+            <div>
+                <h6 class="display-4 m-0 page-title">Post Detail</h6>
+            </div>
                 <!--POST DETAIL DISPLAYS BELOW-->
                 <div class="card border-info mb-3 p-0 border-0">
                     <div class="card-header p-0" th:text="${post.title}"></div>
@@ -43,11 +45,9 @@
         </div>
     </div>
     <div th:replace="fragments/comment :: new-comment-form"></div>
-
     <div th:replace="fragments/comment :: comments"></div>
 </div>
 <div class="spacer"></div>
-
 <div th:replace="fragments/footer :: footer-main"></div>
 <div th:replace="fragments/bottom-scripts :: bottom-scripts"></div>
 </body>

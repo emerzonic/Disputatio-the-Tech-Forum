@@ -52,9 +52,21 @@ body{
     text-decoration-style: -moz-none;
 }
 
-
-.fa-linkedin, .fa-github-square, .fa-envelope{
-    font-size: 4.5rem;
+.fa-skype{
+    color:#02aff0;
 }
+
+
+.fa-linkedin, .fa-github-square, .fa-envelope, .fa-phone-square, .fa-skype{
+    font-size: 4.5rem;
+    transition: 0.5s ease-in;
+    transition: 0.5s ease-out;
+}
+
+
+.contact-icons-div i:hover{
+    transform: scale(1.05);
+}
+
 
 

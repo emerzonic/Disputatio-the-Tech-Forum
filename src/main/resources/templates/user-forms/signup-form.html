@@ -11,7 +11,7 @@
             <div class="alert alert-danger" role="alert" th:if="${exist}">
                 User with username already exist!
             </div>
-            <div><h6 class="display-4">Sign Up</h6></div>
+            <div><h6 class="display-4 page-title">Sign Up</h6></div>
             <div class="post-list-content">
                 <!--USER FORM DISPLAYS BELOW-->
                 <form action="#" th:action="@{/user/signup}" th:object="${user}" method="post">
@@ -25,12 +25,13 @@
                         <input type="password" name="password" class="form-control" th:field="*{password}" id="exampleInputPassword1" placeholder="Password">
                         <div class="text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                     </div>
-                    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                    <button type="submit" class="btn btn-primary mb-3 submit-button">Submit</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<div class="user-form-spacer"></div>
 <div th:replace="fragments/footer :: footer-main"></div>
 <div th:replace="fragments/bottom-scripts :: bottom-scripts"></div>
 </body>

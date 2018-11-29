@@ -2,7 +2,6 @@ package com.emerzonic.SpringApp.controller;
 
 import com.emerzonic.SpringApp.entity.PostComment;
 import com.emerzonic.SpringApp.service.CommentService;
-import com.emerzonic.SpringApp.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,7 @@ public class CommentController {
     private CommentService commentService;
 
     @Autowired
-    public CommentController(CommentService commentService, PostService postService) {
+    public CommentController(CommentService commentService) {
         this.commentService = commentService;
     }
 
@@ -34,8 +33,10 @@ public class CommentController {
     @GetMapping("/edit/{commentId}")
     @ResponseBody
     public PostComment edit(@PathVariable Integer commentId) {
-        return commentService.getComment(commentId);
-}
+      PostComment comment = commentService.getComment(commentId);
+      System.out.println(commentId);
+      return comment;
+    }
 
     //update comment mapping
     @PostMapping(value = "/update",

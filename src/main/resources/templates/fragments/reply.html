@@ -13,9 +13,12 @@
                 <div class="form-group">
                     <textarea th:id="'replyInput'+ ${comment.id}" name="text" class="form-control comment-input autosize-input rounded-0 pb-0" placeholder="Reply this comment..."></textarea>
                 </div>
-                <div class="d-flex justify-content-end">
-                    <button type="button"   th:data-id="${comment.id}" class="btn btn-sm reply-cancel-button">CANCEL</button>
-                    <button type="submit"  th:data-id="${comment.id}" class="btn btn-primary btn-sm reply-submit-button" >REPLY</button>
+                <div class="d-flex justify-content-between">
+                    <small th:id="'newReplyError'+ ${comment.id}" class="text-danger"></small>
+                    <div>
+                        <button type="button"   th:data-id="${comment.id}" class="btn btn-sm reply-cancel-button mr-2">CANCEL</button>
+                        <button type="submit"  th:data-id="${comment.id}" class="btn btn-primary btn-sm reply-submit-button" >REPLY</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -60,9 +63,12 @@
                             <div class="form-group">
                                 <textarea name="reply-text" th:id="${'reply-textarea'+reply.id}" class="form-control comment-input autosize-input rounded-0 pb-0"></textarea>
                             </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="button"  data-th-replyId="${reply.id}" class="btn btn-sm cancel-button cancel-edit">CANCEL</button>
-                                <button type="button"  data-th-replyId="${reply.id}" class="btn btn-primary btn-sm submit-button submit-reply">REPLY</button>
+                            <div class="d-flex justify-content-between">
+                                <small th:id="${'editReplyError'+reply.id}" class="text-danger"></small>
+                                <div>
+                                    <button type="button"  data-th-replyId="${reply.id}" class="btn btn-sm cancel-button cancel-edit mr-2">CANCEL</button>
+                                    <button type="button"  data-th-replyId="${reply.id}" class="btn btn-primary btn-sm submit-button submit-reply">REPLY</button>
+                                </div>
                             </div>
                         </form>
                     </div>

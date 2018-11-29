@@ -9,7 +9,7 @@ public class Like {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private int id;
+	private Integer id;
 	
 	@Column(name="author")
 	private String  author;
@@ -33,12 +33,12 @@ public class Like {
 	}
 	
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -53,7 +53,7 @@ public class Like {
 	}
 
 
-	public int getPostId() {
+	public Integer getPostId() {
 		return postId;
 	}
 
@@ -63,7 +63,7 @@ public class Like {
 	}
 
 
-	public int getCommentId() {
+	public Integer getCommentId() {
 		return commentId;
 	}
 
@@ -73,7 +73,7 @@ public class Like {
 	}
 
 
-	public int getReplyId() {
+	public Integer getReplyId() {
 		return replyId;
 	}
 

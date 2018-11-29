@@ -14,7 +14,7 @@ import java.util.Map;
 		@Id
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		@Column(name="id")
-		private int id;
+		private Integer id;
 
 		@Column(name="text")
 		private String text;
@@ -29,9 +29,9 @@ import java.util.Map;
 		private String author;
 
 		@Column(name="comment_id")
-		private int commentId;
+		private Integer commentId;
 
-		@OneToMany(cascade = CascadeType.ALL)
+		@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 		@JoinColumn(name="reply_id")
 		@MapKey(name = "author")
 		private Map<String, Like> likes;
@@ -39,7 +39,7 @@ import java.util.Map;
 
 		public Reply() {}
 
-		public Reply(String text, String author, int commentId) {
+		public Reply(String text, String author, Integer commentId) {
 			this.text = text;
 			this.author = author;
 			this.commentId = commentId;
@@ -47,11 +47,11 @@ import java.util.Map;
 
 		}
 
-		public int getId() {
+		public Integer getId() {
 			return id;
 		}
 
-		public void setId(int id) {
+		public void setId(Integer id) {
 			this.id = id;
 		}
 
@@ -85,11 +85,11 @@ import java.util.Map;
 			this.author = author;
 		}
 
-		public int getCommentId() {
+		public Integer getCommentId() {
 			return commentId;
 		}
 
-		public void setCommentId(int commentId) {
+		public void setCommentId(Integer commentId) {
 			this.commentId = commentId;
 		}
 

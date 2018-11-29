@@ -41,14 +41,14 @@ public class CommentServiceImpli implements CommentService {
 	@Override
 	@Transactional
 	public PostComment getComment(Integer commentId) {
-		return commentRepository.findById(commentId).orElse(null);
+		return commentRepository.getById(commentId);
 	}
 
 
 	@Override
 	@Transactional
 	public void updateComment(Integer commentId, PostComment comment) {
-        PostComment updatedComment = commentRepository.findById(commentId).orElse(null);
+        PostComment updatedComment = commentRepository.getById(commentId);
         updatedComment.setText(comment.getText());
 	}
 

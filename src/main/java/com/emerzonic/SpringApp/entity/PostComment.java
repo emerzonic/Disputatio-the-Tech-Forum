@@ -5,18 +5,35 @@ import com.emerzonic.SpringApp.util.HandleLike;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+
 
 @Entity
+@NamedEntityGraph(
+				name = "comments.replies",
+				includeAllAttributes = true,
+				attributeNodes = {
+								@NamedAttributeNode(value = "likes"),
+								@NamedAttributeNode(value = "replies", subgraph = "replies.likes")
+				},
+				subgraphs = {
+								@NamedSubgraph(
+												name = "replies.likes",
+												attributeNodes = {
+																@NamedAttributeNode(value = "likes")
+												}
+								)
+				}
+)
 @Table(name = "comment")
 public class PostComment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private Integer id;
 
 	@Column(name = "text")
 	private String text;
@@ -31,14 +48,14 @@ public class PostComment {
 	private String author;
 
 	@Column(name = "post_id")
-	private int postId;
+	private Integer postId;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "comment_id")
 	@OrderBy("id DESC")
-	private List<Reply> replies;
+	private Set<Reply> replies;
 
-	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "comment_id")
 	@MapKey(name = "author")
 	private Map<String, Like> likes;
@@ -47,18 +64,18 @@ public class PostComment {
 	public PostComment() {
 	}
 
-	public PostComment(String text, String author, int postId) {
+	public PostComment(String text, String author, Integer postId) {
 		this.text = text;
 		this.author = author;
 		this.postId = postId;
 		setCreatedOn();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -92,19 +109,19 @@ public class PostComment {
 		this.author = author;
 	}
 
-	public int getPostId() {
+	public Integer getPostId() {
 		return postId;
 	}
 
-	public void setPostId(int postId) {
+	public void setPostId(Integer postId) {
 		this.postId = postId;
 	}
 
-	public List<Reply> getReplies() {
+	public Set<Reply> getReplies() {
 		return replies;
 	}
 
-	public void setReplies(List<Reply> replies) {
+	public void setReplies(Set<Reply> replies) {
 		this.replies = replies;
 	}
 
@@ -118,7 +135,7 @@ public class PostComment {
 
 	public void add(Reply newReply) {
 		if (replies == null) {
-			replies = new ArrayList<>();
+			replies = new HashSet<>();
 		}
 		replies.add(newReply);
 	}

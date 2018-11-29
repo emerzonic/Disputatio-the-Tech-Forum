@@ -9,18 +9,18 @@
 <div class="container px-xl-3 px-lg-3 px-md-3 py-lg-5 px-sm-0 shadow-sm detail-container" >
 	<div class="row">
 		<div class="col-xl-10 col-lg-10 col-md-10 justify-content-center mx-auto">
-			<div><h1 class="display-4">Blog Posts</h1></div>
+			<div><h1 class="display-4 page-title">Blog Posts</h1></div>
             <div class="post-list-content" th:if="${posts != null}">
                 <div class="media my-2 p-4 rounded border" th:each="post : ${ posts }">
                     <div class="media-body">
                         <div class="border-bottom">
-                            <h3 class="mt-0 mb-1" th:text="${ post.title }"></h3>
+                            <h3  class="mt-0 mb-1" th:text="${ post.title }"></h3>
                         </div>
                         <div class="border-bottom">
                             <span class="mr-3 mt-0 mb-1 author" th:text="'By '+${post.author}"></span> <span class="mt-0 mb-1 date-string" th:text="${post.dateString}"></span>
                         </div>
                         <div>
-                            <p class="post-detail" th:text="${ post.text }"></p>
+                            <p class="post-detail" th:text="${ post.text.length()>200? #strings.substring(post.text,0,200)+'...':post.text+'...'}"></p>
                         </div>
                         <a th:href="${'/post/details/' + post.id}"><button type="button" class="btn btn-success">Read More</button></a>
 					</div>

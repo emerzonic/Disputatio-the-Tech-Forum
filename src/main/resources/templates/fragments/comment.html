@@ -11,9 +11,12 @@
                 <div class="form-group">
                     <textarea id="commentInput" name="text" class="form-control comment-input autosize-input rounded-0 pb-0" placeholder="Add comment to this post..."></textarea>
                 </div>
-                <div class="d-flex justify-content-end">
-                    <button type="button"  id="commentCancelButton" class="btn btn-sm cancel-button d-none">CANCEL</button>
-                    <button type="submit"  id="commentSubmitButton" class="btn btn-primary btn-sm submit-button d-none">COMMENT</button>
+                <div class="d-flex justify-content-between">
+                    <small id="newCommentError" class="text-danger"></small>
+                    <div>
+                        <button type="button"  id="commentCancelButton" class="btn btn-sm cancel-button d-none ">CANCEL</button>
+                        <button type="submit"  id="commentSubmitButton" class="btn btn-primary btn-sm submit-button d-none">COMMENT</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -65,11 +68,14 @@
                         <!--EDIT COMMENT FORM BELOW-->
                         <form class="comment-edit-form">
                             <div class="form-group">
-                                <textarea name="comment-text" th:id="${'comment-textarea'+comment.id}" class="form-control comment-input autosize-input rounded-0 pb-0"></textarea>
+                                <textarea name="comment-text" id="commentEdittInput" th:id="${'comment-textarea'+comment.id}" class="form-control comment-input autosize-input rounded-0 pb-0"></textarea>
                             </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="button"  data-th-commentId="${comment.id}" class="btn btn-sm cancel-button cancel-edit">CANCEL</button>
-                                <button type="button"  data-th-commentId="${comment.id}" class="btn btn-primary btn-sm submit-button submit-comment">COMMENT</button>
+                            <div class="d-flex justify-content-between">
+                                <small th:id="'editCommentError'+${comment.id}" class="text-danger"></small>
+                                <div>
+                                    <button type="button"  data-th-commentId="${comment.id}" class="btn btn-sm cancel-button cancel-edit">CANCEL</button>
+                                    <button type="button"  data-th-commentId="${comment.id}" class="btn btn-primary btn-sm submit-button submit-comment">COMMENT</button>
+                                </div>
                             </div>
                         </form>
                     </div>
