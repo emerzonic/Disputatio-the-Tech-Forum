@@ -22,9 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public SecurityConfig(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
-
-
+    
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery("select username as principal,password as credentials, true from user where username=?")

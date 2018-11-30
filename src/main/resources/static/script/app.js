@@ -107,19 +107,21 @@ $("#commentForm").submit(function(event) {
     // retrieve data from form
     var $commentInput = $("#commentInput");
     var text = $commentInput.val().trim();
-    var postId = $("#postId").val();
-    var errorField = $("#newCommentError");
-
     //If field empty stop and show error message
     if(text === ""){
         return errorField.text("Comment field cannot be empty!");
     }
-
+    var postId = $("#postId").val();
+    var errorField = $("#newCommentError");
     var url = "/comment/add";
     var data = {text:text, postId:postId};
+    var requestType = "POST";
+
+    console.log(data);
+
 
     // AJAX post the data to the comment controller.
-    _makeAjaxCall(data,url,"POST",$commentInput);
+    _makeAjaxCall(data,url,requestType,$commentInput);
 });
 
 
@@ -167,16 +169,18 @@ $(document).on("click", ".submit-comment", function(event) {
     var id = event.target.getAttribute("commentId");
     var $commentTextarea = $("#comment-textarea"+id);
     var text = $commentTextarea.val().trim();
-    var errorField = $("#editCommentError"+id);
-
+    //If field empty stop and show error message
     if(text === ""){
         return errorField.text("Comment field cannot be empty!");
     }
-    // AJAX post the updated comment to the comment controller.
+
+    var errorField = $("#editCommentError"+id);
     var url = "/comment/update";
     var data = { id:id,text:text};
+    var requestType = "POST";
 
-    _makeAjaxCall(data,url,"POST",$commentTextarea);
+    // AJAX post the updated comment to the comment controller.
+    _makeAjaxCall(data,url,requestType,$commentTextarea);
 });
 
 
@@ -202,18 +206,21 @@ $(document).on("click", ".commentDelete", function(event) {
 //submitting new reply
 $(document).on("click", ".reply-submit-button", function(event) {
     event.preventDefault();
-    var id = event.target.getAttribute("data-id");
     // retrieve data from reply input
+    var id = event.target.getAttribute("data-id");
     var $replyInput = $("#replyInput"+id);
     var text = $replyInput.val().trim();
-    var data = {text:text, commentId:id};
-    var errorField = $("#newReplyError"+id);
-
+    //if empty return error
     if(text === ""){
         return errorField.text("Reply field cannot be empty!");
     }
+    var data = {text:text, commentId:id};
+    var errorField = $("#newReplyError"+id);
+    var requestType = "POST";
+    var url = "/reply/add";
 
-    _makeAjaxCall(data,url,"POST",$replyInput);
+    // AJAX post data to controller.
+    _makeAjaxCall(data,url,requestType,$replyInput);
 
 });
 
@@ -257,18 +264,16 @@ $(document).on("click", ".submit-reply", function(event) {
     var id = event.target.getAttribute("replyId");
     var $replyTextarea = $("#reply-textarea"+id);
     var text =  $replyTextarea.val().trim();
-    var errorField = $("#editReplyError"+id);
 
     if(text === ""){
         return errorField.text("Reply field cannot be empty!");
     }
-
-    // AJAX post the updated reply to the reply controller.
+    var errorField = $("#editReplyError"+id);
     var url = "/reply/update";
-    var data = { id:id,text:text};
-
-    _makeAjaxCall(data,url,"POST",$replyTextarea);
-
+    var data = { id:id,text:text}
+    var requestType = "POST";
+    // AJAX post the updated reply to the reply controller.
+    _makeAjaxCall(data,url,requestType,$replyTextarea);
 });
 
 
@@ -298,19 +303,11 @@ $(document).on("click", ".toggle-like", function(event) {
         commentId = event.target.getAttribute("commentId"),
         entityType = event.target.getAttribute("data-entity"),
         data = {author: author, postId:postId, commentId:commentId, replyId:replyId},
+        requestType = "POST",
         url =  "/like/toggle-like";
 
-    if(data.postId !== 0){
-        postLike(data)
-    }else if(data.commentId !== 0){
-        postLike(data)
-    }else{
-        postLike(data)
-    }
-    // // AJAX post the data to the like controller.
-    function postLike(data){
-        _makeAjaxCall(data,url,"POST",null);
-    }
+    //AJAX post the data to the like controller.
+        _makeAjaxCall(data,url,requestType,null);
 });
 
 
