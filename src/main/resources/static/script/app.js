@@ -33,11 +33,9 @@ $( "#commentInput" ).focus(function() {
 });
 
 
-//Display cancel and submit buttons when comment input is focused
+//Remove error text when comment input is focused
 $( "#commentEdittInput" ).focus(function() {
-    console.log("before")
     $("#editCommentError").text("");
-    console.log("after")
 });
 
 
@@ -77,29 +75,13 @@ function reloadPageLocation(sec){
     }, sec);
 }
 
-//submitting new comment
-$("#commentForm").submit(function(event) {
-    event.preventDefault();
-    // retrieve data from form
-    var $commentInput = $("#commentInput");
-    var text = $commentInput.val().trim();
-    var postId = $("#postId").val();
-    var errorField = $("#newCommentError");
-
-    if(text === ""){
-        return errorField.text("Comment field cannot be empty!");
-    }
-
-    // AJAX post the data to the comment controller.
-    var url = "/comment/add";
-    var data = {text:text, postId:postId};
-    console.log(data);
+function _makeAjaxCall(data, url, requestType, $inputField){
     $.ajax({
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
-        'type': 'POST',
+        'type': requestType,
         'url': url,
         'data': JSON.stringify(data),
         'dataType': 'json',
@@ -109,9 +91,38 @@ $("#commentForm").submit(function(event) {
     }).done(function( msg ) {
         console.log( msg );
     });
-    $commentInput.val('');
+    if ($inputField!== null){
+        $inputField.val('');
+    }
     reloadPageLocation(2000);
+}
+
+//=====================================================
+//COMMENT AJAX OPERATIONS
+//=====================================================
+
+//submitting new comment
+$("#commentForm").submit(function(event) {
+    event.preventDefault();
+    // retrieve data from form
+    var $commentInput = $("#commentInput");
+    var text = $commentInput.val().trim();
+    var postId = $("#postId").val();
+    var errorField = $("#newCommentError");
+
+    //If field empty stop and show error message
+    if(text === ""){
+        return errorField.text("Comment field cannot be empty!");
+    }
+
+    var url = "/comment/add";
+    var data = {text:text, postId:postId};
+
+    // AJAX post the data to the comment controller.
+    _makeAjaxCall(data,url,"POST",$commentInput);
 });
+
+
 
 
 //editing comment
@@ -164,23 +175,8 @@ $(document).on("click", ".submit-comment", function(event) {
     // AJAX post the updated comment to the comment controller.
     var url = "/comment/update";
     var data = { id:id,text:text};
-    $.ajax({
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        'type': 'POST',
-        'url': url,
-        'data': JSON.stringify(data),
-        'dataType': 'json',
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader(header, token);
-        }
-    }).done(function( msg ) {
-        console.log( msg );
-    });
-    $commentTextarea.val('');
-    reloadPageLocation(2000);
+
+    _makeAjaxCall(data,url,"POST",$commentTextarea);
 });
 
 
@@ -217,24 +213,8 @@ $(document).on("click", ".reply-submit-button", function(event) {
         return errorField.text("Reply field cannot be empty!");
     }
 
-    // AJAX post the data to the reply controller.
-    $.ajax({
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        'type': 'POST',
-        'url': "/reply/add",
-        'data': JSON.stringify(data),
-        'dataType': 'json',
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader(header, token);
-        }
-    }).done(function( msg ) {
-        console.log( msg );
-    });
-    $replyInput.val('');
-    reloadPageLocation(2000);
+    _makeAjaxCall(data,url,"POST",$replyInput);
+
 });
 
 
@@ -286,23 +266,9 @@ $(document).on("click", ".submit-reply", function(event) {
     // AJAX post the updated reply to the reply controller.
     var url = "/reply/update";
     var data = { id:id,text:text};
-    $.ajax({
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        'type': 'POST',
-        'url': url,
-        'data': JSON.stringify(data),
-        'dataType': 'json',
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader(header, token);
-        }
-    }).done(function( msg ) {
-        console.log( msg );
-    });
-    $replyTextarea.val('');
-    reloadPageLocation(2000);
+
+    _makeAjaxCall(data,url,"POST",$replyTextarea);
+
 });
 
 
@@ -327,40 +293,23 @@ $(document).on("click", ".replyDelete", function(event) {
 //=====================================================
 $(document).on("click", ".toggle-like", function(event) {
     var author = event.target.getAttribute("data-author"),
-        entityType = event.target.getAttribute("data-entity"),
         postId = event.target.getAttribute("postId"),
-        commentId = event.target.getAttribute("commentId"),
         replyId = event.target.getAttribute("replyId"),
-        data;
+        commentId = event.target.getAttribute("commentId"),
+        entityType = event.target.getAttribute("data-entity"),
+        data = {author: author, postId:postId, commentId:commentId, replyId:replyId},
+        url =  "/like/toggle-like";
 
-    if(entityType === "post"){
-        data = {author: author, postId:postId, commentId:commentId, replyId:replyId};
+    if(data.postId !== 0){
         postLike(data)
-    }else if(entityType === "comment"){
-        data = {author: author, postId:postId, commentId:commentId, replyId:replyId};
+    }else if(data.commentId !== 0){
         postLike(data)
     }else{
-        data = {author: author, postId:postId, commentId:commentId, replyId:replyId};
         postLike(data)
     }
     // // AJAX post the data to the like controller.
     function postLike(data){
-    $.ajax({
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        'type': 'POST',
-        'url': "/like/toggle-like",
-        'data': JSON.stringify(data),
-        'dataType': 'json',
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader(header, token);
-        }
-    }).done(function( msg ) {
-        console.log( msg );
-    });
-        reloadPageLocation(2000);
+        _makeAjaxCall(data,url,"POST",null);
     }
 });
 

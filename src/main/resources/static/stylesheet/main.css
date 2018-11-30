@@ -1,7 +1,6 @@
 /*GENERAL CROSS-PAGES STYLES*/
 body{
 	background-color:#dedee2;
-    font-family: 'Roboto', sans-serif;
 }
 
 .display-4 {
@@ -349,6 +348,7 @@ a:hover   {
 
 .heading-text{
     color: #ffffff;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
 .spacer{

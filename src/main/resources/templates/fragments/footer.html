@@ -13,13 +13,28 @@
 	<div class="mb-0 mt-lg-0 mt-sm-1 border-top home-footer" th:fragment="footer-home">
 		<div class="container d-flex py-5 flex-column flex-md-row justify-content-between">
 			<div class="d-flex flex-column col-sm-12 col-md-2 col-lg-2 col-xl-2">
-				<div class="shadow-sm">
+				<div class="shadow-sm quicklinks">
 					<h6 class="list-group-item list-group-item-action active text-center">QuickLinks</h6>
-					<a href="/user/signup" class="list-group-item list-group-item-action border-0" sec:authorize="!isAuthenticated()"><i class="fas fa-user-plus"></i> <strong>Sign Up</strong></a>
-					<a href="/user/login" class="list-group-item list-group-item-action border-0" sec:authorize="!isAuthenticated()"><i class="fas fa-sign-in-alt"></i> <strong>Login</strong></a>
-					<a href="/post/new" class="list-group-item list-group-item-action border-0" sec:authorize="isAuthenticated()"><i class="fas fa-edit"></i><strong> Start a conversation</strong></a>
-					<a href="/post/list" class="list-group-item list-group-item-action border-0"><i class="far fa-newspaper"></i><strong> Go to Posts</strong></a>
-					<a href="/logout" class="list-group-item list-group-item-action border-0" sec:authorize="isAuthenticated()"><i class="fas fa-sign-out-alt"></i><strong> Logout</strong></a>
+					<a href="/user/signup" class="list-group-item list-group-item-action" sec:authorize="!isAuthenticated()">
+						<i class="fas fa-user-plus"></i>
+						<strong>Sign Up</strong>
+					</a>
+					<a href="/user/login" class="list-group-item list-group-item-action" sec:authorize="!isAuthenticated()">
+						<i class="fas fa-sign-in-alt"></i>
+						<strong>Login</strong>
+					</a>
+					<a href="/post/new" class="list-group-item list-group-item-action" sec:authorize="isAuthenticated()">
+						<i class="fas fa-edit"></i>
+						<strong> Start a conversation</strong>
+					</a>
+					<a href="/post/list" class="list-group-item list-group-item-action">
+						<i class="far fa-newspaper"></i>
+						<strong> Go to Posts</strong>
+					</a>
+					<a href="/logout" class="list-group-item list-group-item-action" sec:authorize="isAuthenticated()">
+						<i class="fas fa-sign-out-alt"></i>
+						<strong> Logout</strong>
+					</a>
             	</div>
             </div>
 			<div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 px-md-0 px-lg-0 px-xl-0">

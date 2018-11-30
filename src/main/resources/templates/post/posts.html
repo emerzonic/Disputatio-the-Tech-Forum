@@ -9,7 +9,7 @@
 <div class="container px-xl-3 px-lg-3 px-md-3 py-lg-5 px-sm-0 shadow-sm detail-container" >
 	<div class="row">
 		<div class="col-xl-10 col-lg-10 col-md-10 justify-content-center mx-auto">
-			<div><h1 class="display-4 page-title"th:if="${posts.size()>0}">Blog Posts</h1></div>
+			<div><h1 class="display-4 page-title"th:if=" ${posts.size()>0}">Blog Posts</h1></div>
 			<div><h4 class="text-primary text-center bg-light p-lg-4 py-sm-5 px-sm-2" th:if="${posts.size()< 1}"><i class="fas fa-info-circle"></i>  No result was found for your search. Please refine your search.</h4></div>
             <div class="post-list-content" th:if="${posts.size()>0}">
                 <div class="media my-2 p-4 rounded border" th:each="post : ${ posts }">
