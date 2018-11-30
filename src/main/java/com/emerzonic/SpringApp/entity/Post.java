@@ -60,12 +60,12 @@ public class Post {
   @Column(name = "author",nullable = false)
   private String author;
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
   @JoinColumn(name = "post_id")
   @OrderBy("id DESC")
   private Set<PostComment> comments;
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinColumn(name = "post_id")
   @MapKey(name = "author")
   private Map<String, Like> likes;

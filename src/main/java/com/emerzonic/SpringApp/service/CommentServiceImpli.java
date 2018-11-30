@@ -30,7 +30,7 @@ public class CommentServiceImpli implements CommentService {
 	@Transactional
 	public void addComment(PostComment comment) {
         String author = userService.getCurrentUserUsername();
-        Post post = postRepository.findById(comment.getPostId()).orElse(null);
+        Post post = postRepository.getById(comment.getPostId());
         comment.setCreatedOn();
         comment.setAuthor(author);
         post.addComment(comment);
@@ -41,7 +41,7 @@ public class CommentServiceImpli implements CommentService {
 	@Override
 	@Transactional
 	public PostComment getComment(Integer commentId) {
-		return commentRepository.getById(commentId);
+		    return commentRepository.getById(commentId);
 	}
 
 

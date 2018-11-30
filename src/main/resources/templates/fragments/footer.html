@@ -12,7 +12,8 @@
 	</div >
 	<div class="mb-0 mt-lg-0 mt-sm-1 border-top home-footer" th:fragment="footer-home">
 		<div class="container d-flex justify-content-around flex-column flex-md-row flex-lg-row flex-xl-row py-5">
-			<div class="d-flex flex-column col-xl-3 col-lg-3 col-md-2 col-sm-12 text-left">
+			<div class="d-flex flex-column col-xl-2 col-lg-3 col-md-2 col-sm-12 text-left px-0 mx-1">
+				<div>
 				<h6 class="list-group-item list-group-item-action active text-center">QuickLinks</h6>
 				<a href="/user/signup" class="list-group-item list-group-item-action border-0" sec:authorize="!isAuthenticated()"><i class="fas fa-user-plus"></i> <strong>Sign Up</strong></a>
 				<a href="/user/login" class="list-group-item list-group-item-action border-0" sec:authorize="!isAuthenticated()"><i class="fas fa-sign-in-alt"></i> <strong>Login</strong></a>
@@ -20,26 +21,31 @@
 				<a href="/post/list" class="list-group-item list-group-item-action border-0"><i class="far fa-newspaper"></i><strong> Go to Posts</strong></a>
 				<a href="/logout" class="list-group-item list-group-item-action border-0" sec:authorize="isAuthenticated()"><i class="fas fa-sign-out-alt"></i><strong> Logout</strong></a>
             </div>
-			<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                <h6 class="list-group-item list-group-item-action active text-center">About The Discussion Board</h6>
-                <p class="text-justify">The Discussion Board is an online community where users can share blog posts and
+            </div>
+			<div class="col-xl-8 col-lg-8 col-md-6 col-sm-12 px-0 mx-1">
+				<div>
+				<h6 class="list-group-item list-group-item-action active text-center">About The Discussion Board</h6>
+                <p class="text-justify mx-3">The Discussion Board is an online community where users can share blog posts and
 					entertain discussions in the form of comments and replies and likes. This web application is proudly
 					built on Java's Spring Framework. Some of the projects use from Spring Framework ecosystem of projects are
                     Spring Boot, Spring MVC (Transactions, DAO, JDBC, ORM), Spring Security.
 				</p>
-                <p class="text-justify">The project front-end is designed using Thymeleaf template engine, Bootstrap 4, and custom CSS, JavaScript and JQuery,
+                <p class="text-justify mx-3">The project front-end is designed using Thymeleaf template engine, Bootstrap 4, and custom CSS, JavaScript and JQuery,
                     Font Awesome, and Google Fonts. The backend business
                     logic is built on core Java, Spring Inversion of Control (Dependency Injection). Data persistence is
                     handled using Java Persistence API (JPA), Hibernate, and MySQL Database. Project dependencies are managed by Maven.
                 </p>
 			</div>
-			<div class="col-xl-5 col-lg-5 col-md-4  col-sm-12 text-center contact-icons-div">
-                <h6 class="list-group-item list-group-item-action active text-center">Contact or follow the Developer</h6>
+			</div>
+			<div class="col-xl-2 col-lg-2 col-md-4  col-sm-12 text-center contact-icons-div px-0 mx-1">
+				<div>
+				<h6 class="list-group-item list-group-item-action active text-center">Contacts</h6>
                 <a href="https://www.linkedin.com/in/emerson-doyah-0ba6b180/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin display-2 d-inline m-1"></i></a>
                 <a href="https://github.com/emerzonic" target="_blank" rel="noopener noreferrer"><i class="fab fa-github-square display-2 d-inline m-1"></i></a>
                 <a href="mailto:emerson.doyah@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-envelope display-2 d-inline m-1"></i></a>
 				<a href="tel:1-763-439-5721" target="_blank" rel="noopener noreferrer"><i class="fas fa-phone-square display-2 d-inline m-1"></i></a>
 				<a class="contact-link" href="skype:profile_name?userinfo"><i class="fab fa-skype display-2 d-inline m-1"></i></a>
+			</div>
 			</div>
 		</div>
         <div class="py-4 text-light copy-box">

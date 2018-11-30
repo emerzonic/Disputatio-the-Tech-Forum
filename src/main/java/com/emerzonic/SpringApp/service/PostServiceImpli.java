@@ -53,7 +53,7 @@ public class PostServiceImpli implements PostService {
 	@Override
 	@Transactional
 	public void updatePost(Post post, Integer postId) {
-		Post updatedPost = postRepository.findById(postId).orElse(null);
+		Post updatedPost = postRepository.getById(postId);
 		updatedPost.setText(post.getText());
 		updatedPost.setTitle(post.getTitle());
 	}

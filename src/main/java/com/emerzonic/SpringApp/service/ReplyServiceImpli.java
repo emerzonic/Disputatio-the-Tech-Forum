@@ -27,7 +27,7 @@ public class ReplyServiceImpli implements ReplyService {
 	@Transactional
 	public void addReply(Reply reply) {
         String author = userService.getCurrentUserUsername();
-        PostComment comment = commentRepository.findById(reply.getCommentId()).orElse(null);
+        PostComment comment = commentRepository.getById(reply.getCommentId());
         reply.setCreatedOn();
         reply.setAuthor(author);
         comment.add(reply);
