@@ -5,8 +5,7 @@ import com.emerzonic.SpringApp.entity.Like;
 import java.util.HashMap;
 import java.util.Map;
 
-
-public class HandleLike {
+public class HandleLike implements Toggleable{
 
     public boolean toggleLike(Map likes, Like newLike) {
         boolean feedback = true;

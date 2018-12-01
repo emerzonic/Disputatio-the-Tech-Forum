@@ -42,7 +42,6 @@ public class ReplyController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String update(@RequestBody Reply reply) {
-        System.out.println(reply);
         replyService.updateReply(reply.getId(), reply);
         return "Success";
     }

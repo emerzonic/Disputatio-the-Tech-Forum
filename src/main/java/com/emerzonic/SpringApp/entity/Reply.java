@@ -2,6 +2,7 @@ package com.emerzonic.SpringApp.entity;
 
 import com.emerzonic.SpringApp.util.GenerateDateString;
 import com.emerzonic.SpringApp.util.HandleLike;
+import com.emerzonic.SpringApp.util.Toggleable;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -102,8 +103,8 @@ import java.util.Map;
 		}
 
 		public boolean toggleLike(Like newLike) {
-            HandleLike handleLike = new HandleLike();
-            return handleLike.toggleLike(likes, newLike);
+			Toggleable toggleable = new HandleLike();
+			return toggleable.toggleLike(likes,newLike);
 		}
 
 

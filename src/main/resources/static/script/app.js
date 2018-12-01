@@ -75,7 +75,7 @@ function reloadPageLocation(sec){
     }, sec);
 }
 
-function _makeAjaxCall(data, url, requestType, $inputField){
+function _makeAjaxPostCall(data, url, requestType, $inputField){
     $.ajax({
         headers: {
             'Accept': 'application/json',
@@ -121,7 +121,7 @@ $("#commentForm").submit(function(event) {
 
 
     // AJAX post the data to the comment controller.
-    _makeAjaxCall(data,url,requestType,$commentInput);
+    _makeAjaxPostCall(data,url,requestType,$commentInput);
 });
 
 
@@ -180,7 +180,7 @@ $(document).on("click", ".submit-comment", function(event) {
     var requestType = "POST";
 
     // AJAX post the updated comment to the comment controller.
-    _makeAjaxCall(data,url,requestType,$commentTextarea);
+    _makeAjaxPostCall(data,url,requestType,$commentTextarea);
 });
 
 
@@ -220,7 +220,7 @@ $(document).on("click", ".reply-submit-button", function(event) {
     var url = "/reply/add";
 
     // AJAX post data to controller.
-    _makeAjaxCall(data,url,requestType,$replyInput);
+    _makeAjaxPostCall(data,url,requestType,$replyInput);
 
 });
 
@@ -273,7 +273,7 @@ $(document).on("click", ".submit-reply", function(event) {
     var data = { id:id,text:text}
     var requestType = "POST";
     // AJAX post the updated reply to the reply controller.
-    _makeAjaxCall(data,url,requestType,$replyTextarea);
+    _makeAjaxPostCall(data,url,requestType,$replyTextarea);
 });
 
 
@@ -307,7 +307,7 @@ $(document).on("click", ".toggle-like", function(event) {
         url =  "/like/toggle-like";
 
     //AJAX post the data to the like controller.
-        _makeAjaxCall(data,url,requestType,null);
+        _makeAjaxPostCall(data,url,requestType,null);
 });
 
 
