@@ -22,7 +22,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public SecurityConfig(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-    
+
+
+
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery("select username as principal,password as credentials, true from user where username=?")
@@ -32,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http ) throws Exception{
         http.headers()
-                .contentSecurityPolicy("script-src 'self' https://trustedscripts.example.com; object-src https://trustedplugins.example.com; report-uri /csp-report-endpoint/");
+                .contentSecurityPolicy("script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js; object-src https://trustedplugins.placeholder.com; report-uri /csp-report-endpoint/");
         http.authorizeRequests()
                 .antMatchers("/post/new","/post/add","/post/edit/**","/post/update/**","/post/delete/**","/comment/**","/reply/**","/like/**")
                     .authenticated()

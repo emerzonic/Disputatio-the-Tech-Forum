@@ -349,6 +349,7 @@ a:hover   {
 .heading-text{
     color: #ffffff;
     font-family: 'Yanone Kaffeesatz', sans-serif;
+    letter-spacing: 0.3rem;
 }
 
 .spacer{

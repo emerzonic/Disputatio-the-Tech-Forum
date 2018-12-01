@@ -23,10 +23,9 @@ public class ReplyController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Reply addReply(@RequestBody Reply reply) {
-        System.out.println(reply);
+    public String addReply(@RequestBody Reply reply) {
         replyService.addReply(reply);
-        return reply;
+        return "Success";
     }
 
 
@@ -34,18 +33,20 @@ public class ReplyController {
     @GetMapping("/edit/{replyId}")
     public Reply edit(@PathVariable Integer replyId) {
         return replyService.getReply(replyId);
-}
+    }
+
 
     //update reply mapping
     @PostMapping(value = "/update",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Reply update(@RequestBody Reply reply) {
+    public String update(@RequestBody Reply reply) {
         System.out.println(reply);
         replyService.updateReply(reply.getId(), reply);
-        return reply;
+        return "Success";
     }
+
 
     //delete reply
     @GetMapping("/delete/{replyId}")
