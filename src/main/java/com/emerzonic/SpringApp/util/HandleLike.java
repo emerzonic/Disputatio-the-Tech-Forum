@@ -16,12 +16,9 @@ public class HandleLike implements Toggleable{
         boolean hasLike = likes.containsKey(authorKey);
         if (!hasLike) {
             likes.put(authorKey, newLike);
-            System.out.println("like added");
             feedback = false;
-
         } else {
             likes.remove(authorKey);
-            System.out.println("like removed");
         }
         return feedback;
     }
