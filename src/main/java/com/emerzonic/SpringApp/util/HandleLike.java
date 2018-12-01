@@ -9,16 +9,16 @@ public class HandleLike implements Toggleable{
 
     public boolean toggleLike(Map likes, Like newLike) {
         boolean feedback = true;
-        if ( likes== null) {
+        if ( likes == null) {
           likes = new HashMap<String, Like>();
         }
-        String authorKey = newLike.getAuthor();
-        boolean hasLike = likes.containsKey(authorKey);
+        String key = newLike.getAuthor();
+        boolean hasLike = likes.containsKey( key );
         if (!hasLike) {
-            likes.put(authorKey, newLike);
+            likes.put(key, newLike);
             feedback = false;
         } else {
-            likes.remove(authorKey);
+            likes.remove(key);
         }
         return feedback;
     }
