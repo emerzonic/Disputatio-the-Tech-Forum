@@ -32,26 +32,25 @@ public class LikeServiceImpli implements LikeService {
     @Transactional
     public void toggleLike(Like like) {
         String author = userService.getCurrentUserUsername();
+        boolean hasLike = false;
         like.setAuthor(author);
         if (like.getPostId() != 0) {
-            Post post = postRepository.findById(like.getPostId()).orElse(null);
-            boolean found = post.toggleLike(like);
+            Post post = postRepository.getById(like.getPostId());
+            hasLike = post.toggleLike(like);
             like.setCommentId(null);
             like.setReplyId(null);
-            addOrDeleteLike(found, like);
-        }else if(like.getCommentId() !=0){
-            PostComment comment = commentRepository.findById(like.getCommentId()).orElse(null);
-            boolean found = comment.toggleLike(like);
+        }else if(like.getCommentId() != 0){
+            PostComment comment = commentRepository.getById(like.getCommentId());
+            hasLike = comment.toggleLike(like);
             like.setPostId(null);
             like.setReplyId(null);
-            addOrDeleteLike(found, like);
         }else {
             Reply reply = replyRepository.findById(like.getReplyId()).orElse(null);
-            boolean found = reply.toggleLike(like);
+            hasLike = reply.toggleLike(like);
             like.setPostId(null);
             like.setCommentId(null);
-            addOrDeleteLike(found, like);
         }
+        addOrDeleteLike(hasLike, like);
     }
 
 
