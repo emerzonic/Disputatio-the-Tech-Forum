@@ -16,29 +16,43 @@
                 <div class="card border-info mb-3 p-0 border-0">
                     <div class="card-header p-0" th:text="${post.title}"></div>
                     <div class="card-body px-0 pb-0">
-                        <span class="card-title author" th:text="${post.author}"></span> <span class="date-string" th:text="${post.dateString}"></span>
+                        <span class="card-title author" th:text="${post.author}"></span>
+                        <span class="date-string" th:text="${post.dateString}"></span>
                         <p class="card-text mb-0" th:text="${post.text}"></p>
                         <hr class="m-0">
                         <a href="/post/list">
-                            <button type="button" class="btn btn-link btn-lg px-lg-2 px-sm-1 back-botton"><i class="fas fa-undo-alt"></i> Back</button>
+                            <button type="button" class="btn btn-link btn-lg px-lg-2 px-sm-1 back-botton">
+                                <i class="fas fa-undo-alt"></i>
+                                Back
+                            </button>
                         </a>
                         <span class="login-info mx-2" sec:authorize="!isAuthenticated()">Login to like or add comment.</span>
                         <a th:href="${'/post/delete/' + post.id}"  th:if="${#authentication.name}==${post.author}">
-                            <button type="button" class="btn btn-link btn-lg px-lg-2 px-sm-1 post-delete-link"><i class="fas fa-trash-alt"></i> Delete</button>
+                            <button type="button" class="btn btn-link btn-lg px-lg-2 px-sm-1 post-delete-link">
+                                <i class="fas fa-trash-alt"></i>
+                                Delete
+                            </button>
                         </a>
                         <a th:href="${'/post/edit/' + post.id}"  th:if="${#authentication.name}==${post.author}">
-                            <button type="button" class="btn btn-link btn-lg px-lg-2 px-sm-1 post-edit-link"><i class="fas fa-edit"></i> Edit</button>
+                            <button type="button" class="btn btn-link btn-lg px-lg-2 px-sm-1 post-edit-link">
+                                <i class="fas fa-edit"></i>
+                                Edit
+                            </button>
                         </a>
                         <button type="button" class="btn btn-link px-sm-1 post-like-link" sec:authorize="isAuthenticated()">
                             <span class="ml-3 mr-1 like-button px-sm-1">
                                 <i class="fa fa-thumbs-up toggle-like" data-author="author" data-th-postId="${post.id}" data-th-commentId="${0}" data-th-replyId="${0}" data-entity="post"  aria-hidden="true"></i>
                             </span>
                         </button>
-                        <span class="" th:if="${post.likes.size() > 0}" sec:authorize="!isAuthenticated()"><i class="fa fa-thumbs-up text-secondary"></i></span>
+                        <span class="" th:if="${post.likes.size() > 0}" sec:authorize="!isAuthenticated()">
+                            <i class="fa fa-thumbs-up text-secondary"></i>
+                        </span>
                         <span class="" th:if="${post.likes.size() > 0}" th:text="${post.likes.size()}"></span>
                         <span class="ml-3 mr-1 post-comment-display d-inline" th:if="${post.comments.size() > 0}">
-                                <i class="fa fa-comments" aria-hidden="true"> </i> <span th:text="${post.comments.size()}"></span>
-                                <span th:text="${post.comments.size() > 1}?'Comments':'Comment'"></span>
+                            <i class="fa fa-comments" aria-hidden="true">
+                            </i> <span th:text="${post.comments.size()}">
+                        </span>
+                            <span th:text="${post.comments.size() > 1}?'Comments':'Comment'"></span>
                         </span>
                     </div>
                 </div>

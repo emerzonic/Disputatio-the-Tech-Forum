@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head>
-    <meta charset="UTF-8"/>
-</head>
 <body>
 <div class="row" th:fragment="new-reply-form"  sec:authorize="isAuthenticated()">
     <div class="col-lg-10 justify-content-center mx-auto">
@@ -40,7 +37,9 @@
                         <button type="button" class="btn btn-link px-sm-1 post-like-link"  sec:authorize="isAuthenticated()">
                             <i class="fa fa-thumbs-up toggle-like" data-author="author" data-th-replyId="${reply.id}" data-th-commentId="${0}" data-th-postId="${0}" data-entity="reply" aria-hidden="true"></i>
                         </button>
-                        <span class="" th:if="${post.likes.size() > 0}"  sec:authorize="!isAuthenticated()"> <i class="fa fa-thumbs-up text-secondary"></i></span>
+                        <span class="" th:if="${post.likes.size() > 0}"  sec:authorize="!isAuthenticated()">
+                            <i class="fa fa-thumbs-up text-secondary"></i>
+                        </span>
                         <span th:if="${reply.likes.size() > 0}" th:text="${reply.likes.size()}"></span>
                     </div>
                 </div>
@@ -48,8 +47,14 @@
                     <i class="fa fa-ellipsis-v pl-4 pt-5" data-toggle="dropdown" aria-hidden="true"></i>
                     <div class="dropdown-menu border-0 p-0 bg-transparent">
                         <ul class="list-group w-75">
-                            <li class="list-group-item list-group-item-action replyEdit" data-th-replyId="${reply.id}"  th:if="${#authentication.name}==${reply.author}"> <i class="fas fa-edit"></i> Edit</li>
-                            <li class="list-group-item list-group-item-action replyDelete"  data-th-replyId="${reply.id}"  th:if="${#authentication.name}==${reply.author}"><i class="fas fa-trash-alt"></i> Delete</li>
+                            <li class="list-group-item list-group-item-action replyEdit" data-th-replyId="${reply.id}"  th:if="${#authentication.name}==${reply.author}">
+                                <i class="fas fa-edit"></i>
+                                Edit
+                            </li>
+                            <li class="list-group-item list-group-item-action replyDelete"  data-th-replyId="${reply.id}"  th:if="${#authentication.name}==${reply.author}">
+                                <i class="fas fa-trash-alt"></i>
+                                Delete
+                            </li>
                             <li class="list-group-item list-group-item-action" th:if="${#authentication.name}!=${reply.author}"> Report</li>
                         </ul>
                     </div>
