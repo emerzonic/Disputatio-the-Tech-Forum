@@ -69,7 +69,6 @@ public class PostComment {
 		this.text = text;
 		this.author = author;
 		this.postId = postId;
-		setCreatedOn();
 	}
 
 	public Integer getId() {

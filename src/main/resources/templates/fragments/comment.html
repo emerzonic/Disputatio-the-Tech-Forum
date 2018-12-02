@@ -42,12 +42,12 @@
                         </span>
                         <span  th:if="${comment.likes.size() > 0}" th:text="${comment.likes.size()}"></span>
                         <button class="btn btn-link reply-action-button"  th:data-id="${comment.id}" sec:authorize="isAuthenticated()"> REPLY</button>
-                        <p class="d-inline" data-toggle="collapse" th:data-target="'#collapse'+${comment.id}" aria-expanded="true" aria-controls="collapseOne" th:if="${comment.replies.size() > 0}">
+                        <button class="d-inline btn btn-link" data-toggle="collapse" th:data-target="'#collapse'+${comment.id}" aria-expanded="true" aria-controls="collapseOne" th:if="${comment.replies.size() > 0}">
                             View
                             <span th:text="${comment.replies.size()}"></span>
                             <span th:if="${comment.replies.size() == 1}"> Reply</span>
                             <span th:if="${comment.replies.size() > 1}"> Replies</span>
-                        </p>
+                        </button>
                         <span class="login-info d-inline mx-2" sec:authorize="!isAuthenticated()">
                            Login to like add or reply.
                         </span>

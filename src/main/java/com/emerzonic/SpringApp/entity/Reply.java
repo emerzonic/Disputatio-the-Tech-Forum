@@ -44,8 +44,6 @@ import java.util.Map;
 			this.text = text;
 			this.author = author;
 			this.commentId = commentId;
-			setCreatedOn();
-
 		}
 
 		public Integer getId() {

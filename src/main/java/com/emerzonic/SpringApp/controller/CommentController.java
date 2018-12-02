@@ -23,7 +23,6 @@ public class CommentController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String addComment(@RequestBody PostComment comment) {
-        System.out.println(comment);
         commentService.addComment(comment);
         return "success";
     }
@@ -33,9 +32,7 @@ public class CommentController {
     @GetMapping("/edit/{commentId}")
     @ResponseBody
     public PostComment edit(@PathVariable Integer commentId) {
-      PostComment comment = commentService.getComment(commentId);
-      System.out.println(commentId);
-      return comment;
+        return  commentService.getComment(commentId);
     }
 
     //update comment mapping

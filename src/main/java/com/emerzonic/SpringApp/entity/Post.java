@@ -80,7 +80,6 @@ public class Post {
     this.title = title;
     this.text = text;
     this.author = author;
-    setCreatedOn();
   }
 
   public Integer getId() {

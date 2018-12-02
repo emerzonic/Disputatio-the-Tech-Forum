@@ -24,8 +24,6 @@ public class PostServiceImpli implements PostService {
 	}
 
 
-
-
 	@Override
 	@Transactional
 	public List<Post> getAllPosts() {
@@ -40,8 +38,8 @@ public class PostServiceImpli implements PostService {
 		post.setAuthor(author);
 		post.setCreatedOn();
 		postRepository.save(post);
-
 	}
+
 
 	@Override
 	@Transactional
@@ -63,14 +61,11 @@ public class PostServiceImpli implements PostService {
 	@Transactional
 	public void deletePost(int postId) {
 		postRepository.deleteById(postId);
-
 	}
+
 
 	@Transactional
 	public List<Post> searchPost(String searchTerm) {
 		return postRepository.findPostsByTitleContains(searchTerm);
 	}
-
-	
-	
 }
