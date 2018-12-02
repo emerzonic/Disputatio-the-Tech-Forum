@@ -27,13 +27,14 @@
                             </button>
                         </a>
                         <span class="login-info mx-2" sec:authorize="!isAuthenticated()">Login to like or add comment.</span>
-                        <a th:href="${'/post/delete/' + post.id}"  th:if="${#authentication.name}==${post.author}">
+                        <a th:href="${'/post/delete/' + post.id}"
+                           th:if="${#authentication.name} == ${post.author} OR ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                             <button type="button" class="btn btn-link btn-lg px-lg-2 px-sm-1 post-delete-link">
                                 <i class="fas fa-trash-alt"></i>
                                 Delete
                             </button>
                         </a>
-                        <a th:href="${'/post/edit/' + post.id}"  th:if="${#authentication.name}==${post.author}">
+                        <a th:href="${'/post/edit/' + post.id}"  th:if="${#authentication.name} == ${post.author}">
                             <button type="button" class="btn btn-link btn-lg px-lg-2 px-sm-1 post-edit-link">
                                 <i class="fas fa-edit"></i>
                                 Edit
