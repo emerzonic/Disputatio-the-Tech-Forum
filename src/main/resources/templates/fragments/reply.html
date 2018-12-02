@@ -35,7 +35,8 @@
                     <p th:text="${reply.text}"></p>
                     <div class="">
                         <button type="button" class="btn btn-link px-sm-1 post-like-link"  sec:authorize="isAuthenticated()">
-                            <i class="fa fa-thumbs-up toggle-like" data-author="author" data-th-replyId="${reply.id}" data-th-commentId="${0}" data-th-postId="${0}" data-entity="reply" aria-hidden="true"></i>
+                            <i class="fa fa-thumbs-up toggle-like" data-author="author"
+                               data-th-replyId="${reply.id}" data-th-commentId="${0}" data-th-postId="${0}" data-entity="reply" aria-hidden="true"></i>
                         </button>
                         <span class="" th:if="${post.likes.size() > 0}"  sec:authorize="!isAuthenticated()">
                             <i class="fa fa-thumbs-up text-secondary"></i>
@@ -47,7 +48,8 @@
                     <i class="fa fa-ellipsis-v pl-4 pt-5" data-toggle="dropdown" aria-hidden="true"></i>
                     <div class="dropdown-menu border-0 p-0 bg-transparent">
                         <ul class="list-group w-75">
-                            <li class="list-group-item list-group-item-action replyEdit" data-th-replyId="${reply.id}"  th:if="${#authentication.name} == ${reply.author}">
+                            <li class="list-group-item list-group-item-action replyEdit" data-th-replyId="${reply.id}"
+                                th:if="${#authentication.name} == ${reply.author}">
                                 <i class="fas fa-edit"></i>
                                 Edit
                             </li>
