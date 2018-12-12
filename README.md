@@ -1,4 +1,4 @@
-## Disputatio-the-Tech-Forum (The Discussion Board)
+## The Discussion Board
 
 
 The Discussion Board is an online community where users can share blog posts and
