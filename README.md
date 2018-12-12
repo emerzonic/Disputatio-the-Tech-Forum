@@ -2,7 +2,7 @@
 
 
 The Discussion Board is an online community where users can share blog posts and
-entertain discussions in the forms of comments, replies and likes. This web application is proudly
+entertain discussions in the form of comments, replies and likes. This web application is proudly
 built on Java's Spring Framework. Some of the projects use from Spring Framework ecosystem of projects are
 Spring Boot, Spring MVC, Spring Security and Spring Data.
 
