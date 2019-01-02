@@ -3,6 +3,7 @@ package com.emerzonic.SpringApp.service;
 import com.emerzonic.SpringApp.DAO.PostRepository;
 import com.emerzonic.SpringApp.entity.Post;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +28,8 @@ public class PostServiceImpli implements PostService {
 	@Override
 	@Transactional
 	public List<Post> getAllPosts() {
-		return postRepository.findAll();
+		Sort sort = new Sort(Sort.Direction.DESC, "id");
+		return postRepository.findAll(sort);
 	}
 	
 	
