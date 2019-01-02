@@ -57,6 +57,11 @@ body{
     color:#02aff0;
 }
 
+.fa-leaf{
+    color: green;
+    margin-left: 1rem;
+}
+
 
 .fa-linkedin, .fa-github-square, .fa-envelope, .fa-phone-square, .fa-skype{
     font-size: 3.3rem;

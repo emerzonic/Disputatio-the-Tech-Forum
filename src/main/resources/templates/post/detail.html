@@ -10,11 +10,10 @@
     <div class="row">
         <div class="col-lg-10 justify-content-center mx-auto">
             <div>
-                <h6 class="display-4 m-0 page-title">Post Detail</h6>
+                <h6 class="display-4 m-0 page-title" th:text="${post.title}"></h6>
             </div>
                 <!--POST DETAIL DISPLAYS BELOW-->
                 <div class="card border-info mb-3 p-0 border-0">
-                    <div class="card-header p-0" th:text="${post.title}"></div>
                     <div class="card-body px-0 pb-0">
                         <span class="card-title author" th:text="${post.author}"></span>
                         <span class="date-string" th:text="${post.dateString}"></span>

@@ -22,7 +22,7 @@ public class CommentController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String addComment(@RequestBody PostComment comment) {
+    public String addComment(@RequestBody PostComment comment) throws Exception{
         commentService.addComment(comment);
         return "success";
     }
@@ -31,7 +31,7 @@ public class CommentController {
     //get comment to be edited
     @GetMapping("/edit/{commentId}")
     @ResponseBody
-    public PostComment edit(@PathVariable Integer commentId) {
+    public PostComment edit(@PathVariable Integer commentId) throws Exception{
         return  commentService.getComment(commentId);
     }
 
@@ -40,7 +40,7 @@ public class CommentController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String update(@RequestBody PostComment comment) {
+    public String update(@RequestBody PostComment comment)throws Exception{
         commentService.updateComment(comment.getId(), comment);
         return "success";
     }
@@ -48,7 +48,7 @@ public class CommentController {
     //delete comment
     @GetMapping("/delete/{commentId}")
     @ResponseBody
-    public String deleteComment(@PathVariable Integer commentId) {
+    public String deleteComment(@PathVariable Integer commentId)throws Exception{
         commentService.deleteComment(commentId);
         return "Success";
     }

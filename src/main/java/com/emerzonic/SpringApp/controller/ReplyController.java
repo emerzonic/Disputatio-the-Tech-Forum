@@ -23,7 +23,7 @@ public class ReplyController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String addReply(@RequestBody Reply reply) {
+    public String addReply(@RequestBody Reply reply) throws Exception{
         replyService.addReply(reply);
         return "Success";
     }
@@ -31,7 +31,7 @@ public class ReplyController {
 
     //get reply to be edited
     @GetMapping("/edit/{replyId}")
-    public Reply edit(@PathVariable Integer replyId) {
+    public Reply edit(@PathVariable Integer replyId) throws Exception{
         return replyService.getReply(replyId);
     }
 
@@ -41,7 +41,7 @@ public class ReplyController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String update(@RequestBody Reply reply) {
+    public String update(@RequestBody Reply reply) throws Exception{
         replyService.updateReply(reply.getId(), reply);
         return "Success";
     }
@@ -50,7 +50,7 @@ public class ReplyController {
     //delete reply
     @GetMapping("/delete/{replyId}")
     @ResponseBody
-    public String deleteReply(@PathVariable Integer replyId) {
+    public String deleteReply(@PathVariable Integer replyId) throws Exception{
         replyService.deleteReply(replyId);
         return "Success";
     }

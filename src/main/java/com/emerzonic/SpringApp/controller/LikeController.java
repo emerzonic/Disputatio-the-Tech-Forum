@@ -23,12 +23,8 @@ public class LikeController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String addReply(@RequestBody Like like) {
-        try {
-            likeService.toggleLike(like);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    public String addReply(@RequestBody Like like)throws Exception{
+        likeService.toggleLike(like);
         return "success";
     }
 

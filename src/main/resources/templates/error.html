@@ -1,10 +1,21 @@
+<!--<!DOCTYPE html>-->
+
+<!--<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'error')}">-->
+
+
+
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'error')}">
-
-  <body>
-    <p th:text="error">Exception message</p>
-    <p th:text="${message}">Exception message</p>
-  </body>
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+<body class="m-0 p-0">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-sm-12 mx-auto">
+      <p th:text="error">Exception message</p>
+      <p th:text="${message}">Exception message</p>
+    </div>
+  </div>
+</div>
+<div th:replace="fragments/bottom-scripts :: bottom-scripts"></div>
+</body>
 </html>
+

@@ -28,7 +28,7 @@ public class UserController {
 
    //show new user signup form
     @GetMapping("/signup")
-    public String showSignupForm(Model model) {
+    public String showSignupForm(Model model) throws Exception{
         User user = new User();
         model.addAttribute("user", user);
         return "user-forms/signup-form";
@@ -37,7 +37,9 @@ public class UserController {
 
     //process new user
     @PostMapping("/signup")
-    public String createUser(@ModelAttribute(value="user") @Valid User user, BindingResult bindingResult, Model model) {
+    public String createUser(@ModelAttribute(value="user") @Valid User user,
+                             BindingResult bindingResult,
+                             Model model) throws Exception{
         if(bindingResult.hasErrors()){
             return "user-forms/signup-form";
         }
@@ -52,7 +54,7 @@ public class UserController {
 
     //show login form
     @GetMapping("/login")
-    public String showLoginForm(Model model) {
+    public String showLoginForm(Model model) throws Exception{
         User user = new User();
         model.addAttribute("user", user);
         model.addAttribute("page-title", "Sign Up");

@@ -27,15 +27,17 @@ public class PostController {
 
     //get all posts
     @GetMapping("/list")
-    public String getAllPosts(Model model) {
+    public String getAllPosts(Model model) throws Exception{
        List<Post> posts = postService.getAllPosts();
        model.addAttribute("posts", posts);
-       return "post/posts";
+//        throw new NullPointerException("this is error");
+
+        return "post/posts";
     }
 
     //search posts
     @PostMapping("/search")
-    public String searchPosts(@RequestParam(defaultValue = "") String searchTerm, Model model)  {
+    public String searchPosts(@RequestParam(defaultValue = "") String searchTerm, Model model) throws Exception{
         List<Post> posts = postService.searchPost(searchTerm);
         model.addAttribute("posts", posts);
         System.out.println(posts);
@@ -44,7 +46,7 @@ public class PostController {
 
     //get new post form
     @GetMapping("/new")
-    public String newPost(Model model) {
+    public String newPost(Model model) throws Exception{
         Post post = new Post();
         model.addAttribute("post", post);
         return "post/form";
@@ -53,7 +55,9 @@ public class PostController {
 
     //add new post
     @PostMapping("/add")
-    public String addPost(@ModelAttribute(value="post") @Valid Post post, BindingResult bindingResult, Model model) {
+    public String addPost(@ModelAttribute(value="post") @Valid Post post,
+                          BindingResult bindingResult,
+                          Model model)throws Exception{
         if(bindingResult.hasErrors()){
             return "post/form";
         }
@@ -64,7 +68,7 @@ public class PostController {
 
     //get post details
     @GetMapping("/details/{postId}")
-    public String getPost(@PathVariable Integer postId, Model model) {
+    public String getPost(@PathVariable Integer postId, Model model) throws Exception{
         Post post = postService.getPost(postId);
         model.addAttribute("post", post);
         return "post/detail";
@@ -73,7 +77,7 @@ public class PostController {
 
     //get post to be edited
     @GetMapping("/edit/{postId}")
-    public String edit(@PathVariable Integer postId, Model model) {
+    public String edit(@PathVariable Integer postId, Model model) throws Exception{
         Post post = postService.getPost(postId);
         model.addAttribute("post", post);
         return "post/edit";
@@ -82,7 +86,9 @@ public class PostController {
 
     //update post
     @PostMapping("/update/{postId}")
-    public String updatePost(@ModelAttribute(value="post") @Valid Post post,BindingResult bindingResult, @PathVariable Integer postId, Model model) {
+    public String updatePost(@ModelAttribute(value="post") @Valid Post post,
+                             BindingResult bindingResult,
+                             @PathVariable Integer postId, Model model)throws Exception{
         if(bindingResult.hasErrors()){
             return "post/edit";
         }
@@ -92,7 +98,7 @@ public class PostController {
 
     //delete post
     @GetMapping("/delete/{postId}")
-    public String deletePost(@PathVariable Integer postId) {
+    public String deletePost(@PathVariable Integer postId) throws Exception{
         postService.deletePost(postId);
         return "redirect:/post/list";
     }
